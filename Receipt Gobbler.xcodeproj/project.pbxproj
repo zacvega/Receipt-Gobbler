@@ -1,0 +1,613 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D9C3C982C876B4F0047E5CE /* Receipt_GobblerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3C972C876B4F0047E5CE /* Receipt_GobblerApp.swift */; };
+		1D9C3C9A2C876B4F0047E5CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3C992C876B4F0047E5CE /* ContentView.swift */; };
+		1D9C3C9C2C876B530047E5CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D9C3C9B2C876B530047E5CE /* Assets.xcassets */; };
+		1D9C3C9F2C876B530047E5CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D9C3C9E2C876B530047E5CE /* Preview Assets.xcassets */; };
+		1D9C3CA92C876B540047E5CE /* Receipt_GobblerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3CA82C876B540047E5CE /* Receipt_GobblerTests.swift */; };
+		1D9C3CB32C876B540047E5CE /* Receipt_GobblerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3CB22C876B540047E5CE /* Receipt_GobblerUITests.swift */; };
+		1D9C3CB52C876B540047E5CE /* Receipt_GobblerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3CB42C876B540047E5CE /* Receipt_GobblerUITestsLaunchTests.swift */; };
+		1D9C3CC22C876EE80047E5CE /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3CC12C876EE80047E5CE /* CameraView.swift */; };
+		1D9C3CC42C876F170047E5CE /* NewReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3CC32C876F170047E5CE /* NewReceiptView.swift */; };
+		1D9C3CC62C8771FF0047E5CE /* ReceiptFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3CC52C8771FF0047E5CE /* ReceiptFormView.swift */; };
+		1D9C3CC82C8775B30047E5CE /* ReceiptStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3CC72C8775B30047E5CE /* ReceiptStore.swift */; };
+		1D9C3CCA2C8775F20047E5CE /* PreviousReceiptsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3CC92C8775F20047E5CE /* PreviousReceiptsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1D9C3CA52C876B540047E5CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1D9C3C8C2C876B4E0047E5CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D9C3C932C876B4F0047E5CE;
+			remoteInfo = "Receipt Gobbler";
+		};
+		1D9C3CAF2C876B540047E5CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1D9C3C8C2C876B4E0047E5CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D9C3C932C876B4F0047E5CE;
+			remoteInfo = "Receipt Gobbler";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1D9C3C942C876B4F0047E5CE /* Receipt Gobbler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Receipt Gobbler.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D9C3C972C876B4F0047E5CE /* Receipt_GobblerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt_GobblerApp.swift; sourceTree = "<group>"; };
+		1D9C3C992C876B4F0047E5CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1D9C3C9B2C876B530047E5CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1D9C3C9E2C876B530047E5CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1D9C3CA42C876B540047E5CE /* Receipt GobblerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Receipt GobblerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D9C3CA82C876B540047E5CE /* Receipt_GobblerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt_GobblerTests.swift; sourceTree = "<group>"; };
+		1D9C3CAE2C876B540047E5CE /* Receipt GobblerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Receipt GobblerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D9C3CB22C876B540047E5CE /* Receipt_GobblerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt_GobblerUITests.swift; sourceTree = "<group>"; };
+		1D9C3CB42C876B540047E5CE /* Receipt_GobblerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt_GobblerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1D9C3CC12C876EE80047E5CE /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		1D9C3CC32C876F170047E5CE /* NewReceiptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReceiptView.swift; sourceTree = "<group>"; };
+		1D9C3CC52C8771FF0047E5CE /* ReceiptFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptFormView.swift; sourceTree = "<group>"; };
+		1D9C3CC72C8775B30047E5CE /* ReceiptStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptStore.swift; sourceTree = "<group>"; };
+		1D9C3CC92C8775F20047E5CE /* PreviousReceiptsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousReceiptsView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D9C3C912C876B4F0047E5CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1D9C3CA12C876B540047E5CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1D9C3CAB2C876B540047E5CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1D9C3C8B2C876B4E0047E5CE = {
+			isa = PBXGroup;
+			children = (
+				1D9C3C962C876B4F0047E5CE /* Receipt Gobbler */,
+				1D9C3CA72C876B540047E5CE /* Receipt GobblerTests */,
+				1D9C3CB12C876B540047E5CE /* Receipt GobblerUITests */,
+				1D9C3C952C876B4F0047E5CE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1D9C3C952C876B4F0047E5CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D9C3C942C876B4F0047E5CE /* Receipt Gobbler.app */,
+				1D9C3CA42C876B540047E5CE /* Receipt GobblerTests.xctest */,
+				1D9C3CAE2C876B540047E5CE /* Receipt GobblerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1D9C3C962C876B4F0047E5CE /* Receipt Gobbler */ = {
+			isa = PBXGroup;
+			children = (
+				1D9C3C972C876B4F0047E5CE /* Receipt_GobblerApp.swift */,
+				1D9C3C992C876B4F0047E5CE /* ContentView.swift */,
+				1D9C3C9B2C876B530047E5CE /* Assets.xcassets */,
+				1D9C3C9D2C876B530047E5CE /* Preview Content */,
+				1D9C3CC12C876EE80047E5CE /* CameraView.swift */,
+				1D9C3CC32C876F170047E5CE /* NewReceiptView.swift */,
+				1D9C3CC52C8771FF0047E5CE /* ReceiptFormView.swift */,
+				1D9C3CC72C8775B30047E5CE /* ReceiptStore.swift */,
+				1D9C3CC92C8775F20047E5CE /* PreviousReceiptsView.swift */,
+			);
+			path = "Receipt Gobbler";
+			sourceTree = "<group>";
+		};
+		1D9C3C9D2C876B530047E5CE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1D9C3C9E2C876B530047E5CE /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1D9C3CA72C876B540047E5CE /* Receipt GobblerTests */ = {
+			isa = PBXGroup;
+			children = (
+				1D9C3CA82C876B540047E5CE /* Receipt_GobblerTests.swift */,
+			);
+			path = "Receipt GobblerTests";
+			sourceTree = "<group>";
+		};
+		1D9C3CB12C876B540047E5CE /* Receipt GobblerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1D9C3CB22C876B540047E5CE /* Receipt_GobblerUITests.swift */,
+				1D9C3CB42C876B540047E5CE /* Receipt_GobblerUITestsLaunchTests.swift */,
+			);
+			path = "Receipt GobblerUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D9C3C932C876B4F0047E5CE /* Receipt Gobbler */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D9C3CB82C876B540047E5CE /* Build configuration list for PBXNativeTarget "Receipt Gobbler" */;
+			buildPhases = (
+				1D9C3C902C876B4F0047E5CE /* Sources */,
+				1D9C3C912C876B4F0047E5CE /* Frameworks */,
+				1D9C3C922C876B4F0047E5CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Receipt Gobbler";
+			productName = "Receipt Gobbler";
+			productReference = 1D9C3C942C876B4F0047E5CE /* Receipt Gobbler.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1D9C3CA32C876B540047E5CE /* Receipt GobblerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D9C3CBB2C876B540047E5CE /* Build configuration list for PBXNativeTarget "Receipt GobblerTests" */;
+			buildPhases = (
+				1D9C3CA02C876B540047E5CE /* Sources */,
+				1D9C3CA12C876B540047E5CE /* Frameworks */,
+				1D9C3CA22C876B540047E5CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1D9C3CA62C876B540047E5CE /* PBXTargetDependency */,
+			);
+			name = "Receipt GobblerTests";
+			productName = "Receipt GobblerTests";
+			productReference = 1D9C3CA42C876B540047E5CE /* Receipt GobblerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1D9C3CAD2C876B540047E5CE /* Receipt GobblerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D9C3CBE2C876B540047E5CE /* Build configuration list for PBXNativeTarget "Receipt GobblerUITests" */;
+			buildPhases = (
+				1D9C3CAA2C876B540047E5CE /* Sources */,
+				1D9C3CAB2C876B540047E5CE /* Frameworks */,
+				1D9C3CAC2C876B540047E5CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1D9C3CB02C876B540047E5CE /* PBXTargetDependency */,
+			);
+			name = "Receipt GobblerUITests";
+			productName = "Receipt GobblerUITests";
+			productReference = 1D9C3CAE2C876B540047E5CE /* Receipt GobblerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1D9C3C8C2C876B4E0047E5CE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					1D9C3C932C876B4F0047E5CE = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					1D9C3CA32C876B540047E5CE = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 1D9C3C932C876B4F0047E5CE;
+					};
+					1D9C3CAD2C876B540047E5CE = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 1D9C3C932C876B4F0047E5CE;
+					};
+				};
+			};
+			buildConfigurationList = 1D9C3C8F2C876B4E0047E5CE /* Build configuration list for PBXProject "Receipt Gobbler" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1D9C3C8B2C876B4E0047E5CE;
+			productRefGroup = 1D9C3C952C876B4F0047E5CE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D9C3C932C876B4F0047E5CE /* Receipt Gobbler */,
+				1D9C3CA32C876B540047E5CE /* Receipt GobblerTests */,
+				1D9C3CAD2C876B540047E5CE /* Receipt GobblerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D9C3C922C876B4F0047E5CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D9C3C9F2C876B530047E5CE /* Preview Assets.xcassets in Resources */,
+				1D9C3C9C2C876B530047E5CE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1D9C3CA22C876B540047E5CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1D9C3CAC2C876B540047E5CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D9C3C902C876B4F0047E5CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D9C3CC42C876F170047E5CE /* NewReceiptView.swift in Sources */,
+				1D9C3CC22C876EE80047E5CE /* CameraView.swift in Sources */,
+				1D9C3CCA2C8775F20047E5CE /* PreviousReceiptsView.swift in Sources */,
+				1D9C3CC82C8775B30047E5CE /* ReceiptStore.swift in Sources */,
+				1D9C3CC62C8771FF0047E5CE /* ReceiptFormView.swift in Sources */,
+				1D9C3C9A2C876B4F0047E5CE /* ContentView.swift in Sources */,
+				1D9C3C982C876B4F0047E5CE /* Receipt_GobblerApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1D9C3CA02C876B540047E5CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D9C3CA92C876B540047E5CE /* Receipt_GobblerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1D9C3CAA2C876B540047E5CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D9C3CB32C876B540047E5CE /* Receipt_GobblerUITests.swift in Sources */,
+				1D9C3CB52C876B540047E5CE /* Receipt_GobblerUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1D9C3CA62C876B540047E5CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D9C3C932C876B4F0047E5CE /* Receipt Gobbler */;
+			targetProxy = 1D9C3CA52C876B540047E5CE /* PBXContainerItemProxy */;
+		};
+		1D9C3CB02C876B540047E5CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D9C3C932C876B4F0047E5CE /* Receipt Gobbler */;
+			targetProxy = 1D9C3CAF2C876B540047E5CE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1D9C3CB62C876B540047E5CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1D9C3CB72C876B540047E5CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1D9C3CB92C876B540047E5CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Receipt Gobbler/Preview Content\"";
+				DEVELOPMENT_TEAM = FQ5KAMFGB6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.missouri.Receipt-Gobbler";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1D9C3CBA2C876B540047E5CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Receipt Gobbler/Preview Content\"";
+				DEVELOPMENT_TEAM = FQ5KAMFGB6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.missouri.Receipt-Gobbler";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1D9C3CBC2C876B540047E5CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQ5KAMFGB6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.missouri.Receipt-GobblerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Receipt Gobbler.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Receipt Gobbler";
+			};
+			name = Debug;
+		};
+		1D9C3CBD2C876B540047E5CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQ5KAMFGB6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.missouri.Receipt-GobblerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Receipt Gobbler.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Receipt Gobbler";
+			};
+			name = Release;
+		};
+		1D9C3CBF2C876B540047E5CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQ5KAMFGB6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.missouri.Receipt-GobblerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Receipt Gobbler";
+			};
+			name = Debug;
+		};
+		1D9C3CC02C876B540047E5CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQ5KAMFGB6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.missouri.Receipt-GobblerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Receipt Gobbler";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D9C3C8F2C876B4E0047E5CE /* Build configuration list for PBXProject "Receipt Gobbler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D9C3CB62C876B540047E5CE /* Debug */,
+				1D9C3CB72C876B540047E5CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1D9C3CB82C876B540047E5CE /* Build configuration list for PBXNativeTarget "Receipt Gobbler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D9C3CB92C876B540047E5CE /* Debug */,
+				1D9C3CBA2C876B540047E5CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1D9C3CBB2C876B540047E5CE /* Build configuration list for PBXNativeTarget "Receipt GobblerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D9C3CBC2C876B540047E5CE /* Debug */,
+				1D9C3CBD2C876B540047E5CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1D9C3CBE2C876B540047E5CE /* Build configuration list for PBXNativeTarget "Receipt GobblerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D9C3CBF2C876B540047E5CE /* Debug */,
+				1D9C3CC02C876B540047E5CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1D9C3C8C2C876B4E0047E5CE /* Project object */;
+}
