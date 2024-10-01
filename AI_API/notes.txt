@@ -1,0 +1,22 @@
+process layers
+1. validate input
+2. load configs
+    model, api address, parameters
+    load prompt
+3. wrap request
+4. send request
+5. unwrap response
+
+extra classes
+1. logger 
+    log token estimates and true count
+    log costs and accuracy
+
+2. datatypes
+    how is date and time laid out in json
+
+
+Notes
+schemas would be better off as txt files where json is just the file names
+make wrap and unwrap generic
+change how api key is loaded in
