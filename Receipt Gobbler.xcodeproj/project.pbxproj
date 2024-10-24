@@ -54,6 +54,7 @@
 		1D9C3CC52C8771FF0047E5CE /* ReceiptFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptFormView.swift; sourceTree = "<group>"; };
 		1D9C3CC72C8775B30047E5CE /* ReceiptStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptStore.swift; sourceTree = "<group>"; };
 		1D9C3CC92C8775F20047E5CE /* PreviousReceiptsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousReceiptsView.swift; sourceTree = "<group>"; };
+		C9CB045B2CCABA3B00194C24 /* Receipt-Gobbler-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Receipt-Gobbler-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +105,7 @@
 		1D9C3C962C876B4F0047E5CE /* Receipt Gobbler */ = {
 			isa = PBXGroup;
 			children = (
+				C9CB045B2CCABA3B00194C24 /* Receipt-Gobbler-Info.plist */,
 				1D9C3C972C876B4F0047E5CE /* Receipt_GobblerApp.swift */,
 				1D9C3C992C876B4F0047E5CE /* ContentView.swift */,
 				1D9C3C9B2C876B530047E5CE /* Assets.xcassets */,
@@ -442,14 +444,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Receipt Gobbler/Preview Content\"";
-				DEVELOPMENT_TEAM = FQ5KAMFGB6;
+				DEVELOPMENT_TEAM = 4U3FQ7VN9S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Receipt-Gobbler-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -471,14 +475,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Receipt Gobbler/Preview Content\"";
-				DEVELOPMENT_TEAM = FQ5KAMFGB6;
+				DEVELOPMENT_TEAM = 4U3FQ7VN9S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Receipt-Gobbler-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
