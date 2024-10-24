@@ -1,11 +1,11 @@
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
     @State private var searchText: String = ""
     @ObservedObject var receiptStore = ReceiptStore.shared // Observing ReceiptStore for updates
-
+    
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 // Display total spend for the current month
                 Text("Total Spend This Month")
@@ -20,7 +20,7 @@ struct ContentView: View {
                 // Search Bar
                 SearchBar(text: $searchText)
                     .padding()
-
+                
                 // GeometryReader to get the available width for buttons
                 GeometryReader { geometry in
                     VStack {
@@ -34,7 +34,7 @@ struct ContentView: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                         }
-
+    
                         // Previous Receipt Button
                         NavigationLink(destination: PreviousReceiptsView()) {
                             Text("Previous Receipt")
@@ -55,6 +55,20 @@ struct ContentView: View {
             .padding()
             .navigationTitle("Receipts")
         }
+        
+
+    }
+}
+
+struct ContentView: View {
+    @State private var selectedTab = "home"
+
+    var body: some View {
+        
+        TabView(selection: $selectedTab) {
+            HomeView().tabItem{Label("Home", systemImage: "house.fill")}.tag("home")
+        }
+
     }
 }
 
