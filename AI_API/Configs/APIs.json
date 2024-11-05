@@ -1,0 +1,9 @@
+{
+    "apiList" : [
+        {
+            "name": "openAI",
+            "url": "https://api.openai.com/v1/chat/completions",
+            "apiKey": "replace_me"
+        }
+    ]
+}
