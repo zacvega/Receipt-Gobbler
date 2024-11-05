@@ -6,11 +6,11 @@ enum ConfigPath: String {
 
 func main() async {
     //print(ConfigPath.configPath.rawValue)
-    let testData = try! Data(contentsOf: URL(fileURLWithPath: "./TestData/r1.txt"))
+    let testData = try! Data(contentsOf: URL(fileURLWithPath: "./TestData/r2.txt"))
 
     if let input = String(data: testData, encoding: .utf8) {
-        let prompt = "test_extract"
-        let schema = "Basic_no_alias"
+        let prompt = "mini_extract"
+        let schema = "structured_no_alias"
         let api = "openAI"
         let result = await ExtractionAPI.extractData(inputString: input, promptString: prompt, schemaString: schema, apiString: api)
         //print(input)

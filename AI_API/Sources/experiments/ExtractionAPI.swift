@@ -25,7 +25,7 @@ class ExtractionAPI {
                     throw MainExtractionError.promptError
                 }
                 
-                guard let schema = SchemaHandler.findSchemaItem(byName: schemaString) else {
+                guard let schema = SchemaHandler.findSchemaItem(byName: schemaString, "extraction") else {
                     print("schema not found")
                     throw MainExtractionError.schemaError
                 }

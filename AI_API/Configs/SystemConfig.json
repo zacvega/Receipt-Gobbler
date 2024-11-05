@@ -7,6 +7,6 @@
         "log": "/Log",
         "api": "/Configs/APIs.json",
         "prompts": "/Configs/Prompts.json",
-        "schemas": "/Configs/Schemas.json"
+        "schemas": "/Schemas"
     }
 }

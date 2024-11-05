@@ -36,7 +36,6 @@ class RequestBuilder {
             let encoder = JSONEncoder()
             request.httpBody = try encoder.encode(body)
         }
-
         //print("Request setup complete.")  // Debug message
         return request
     }

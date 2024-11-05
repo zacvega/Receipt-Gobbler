@@ -1,0 +1,65 @@
+{
+  "type": "json_schema",
+  "json_schema": {
+    "name": "basic_no_alias",
+      "schema": {
+        "type": "object",
+        "companyName": {
+          "type": "string",
+          "description": "The name of the company."
+        },
+        "companyAddress": {
+          "type": "string",
+          "description": "The address of the company."
+        },
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "The date of the transaction (YYYY-MM-DD)."
+        },
+        "time": {
+          "type": "string",
+          "format": "time",
+          "description": "The time of the transaction (HH:MM)."
+        },
+        "subtotal": {
+          "type": "number",
+          "description": "The subtotal amount before taxes."
+        },
+        "tax": {
+          "type": "number",
+          "description": "The tax amount applied to the transaction."
+        },
+        "total": {
+          "type": "number",
+          "description": "The total amount including taxes."
+        },
+        "items": {
+          "type": "array",
+          "description": "List of items purchased.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "itemName": {
+                "type": "string",
+                "description": "The name of the item that appears in the text."
+              },
+              "quantity": {
+                "type": "number",
+                "description": "The quantity of the item."
+              },
+              "itemPrice": {
+                "type": "number",
+                "description": "The price of a single item."
+              }
+            },
+            "required": ["itemName", "quantity", "itemPrice"]
+          }
+        },
+        "required": ["companyName", "date", "subtotal", "total", "items"],
+        "additional_properties": false
+    },
+    "strict": true
+  }
+}
+  

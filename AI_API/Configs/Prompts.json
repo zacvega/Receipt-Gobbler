@@ -30,6 +30,22 @@
             "prompt": {
                 "prompt": "You are a data annotator. Use the following schema and create a JSON output from the user's input"
             }
+        },
+
+        {
+            "name": "mini_extract",
+            "task": "text_extraction",
+            "apiService": "openAI",
+            "parameters": {
+                "minSize": 0,
+                "maxSize": 1000000,
+                "model": "gpt-4o-mini-2024-07-18",
+                "maxToken": 1000,
+                "temperature": 0.0
+            },            
+            "prompt": {
+                "prompt": "You are an expert at structured data extraction. You will be given unstructured text from a receipt and should convert it into the given structure."
+            }
         }
     ]
 }
