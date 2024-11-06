@@ -19,6 +19,7 @@
 		1D9C3CC62C8771FF0047E5CE /* ReceiptFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3CC52C8771FF0047E5CE /* ReceiptFormView.swift */; };
 		1D9C3CC82C8775B30047E5CE /* ReceiptStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3CC72C8775B30047E5CE /* ReceiptStore.swift */; };
 		1D9C3CCA2C8775F20047E5CE /* PreviousReceiptsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3CC92C8775F20047E5CE /* PreviousReceiptsView.swift */; };
+		DA44F8702CDBE95B001C7C9A /* AI_API in Resources */ = {isa = PBXBuildFile; fileRef = DA44F86F2CDBE95B001C7C9A /* AI_API */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		1D9C3CC72C8775B30047E5CE /* ReceiptStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptStore.swift; sourceTree = "<group>"; };
 		1D9C3CC92C8775F20047E5CE /* PreviousReceiptsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousReceiptsView.swift; sourceTree = "<group>"; };
 		C9CB045B2CCABA3B00194C24 /* Receipt-Gobbler-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Receipt-Gobbler-Info.plist"; sourceTree = SOURCE_ROOT; };
+		DA44F86F2CDBE95B001C7C9A /* AI_API */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AI_API; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				C9CB045B2CCABA3B00194C24 /* Receipt-Gobbler-Info.plist */,
 				1D9C3C972C876B4F0047E5CE /* Receipt_GobblerApp.swift */,
 				1D9C3C992C876B4F0047E5CE /* ContentView.swift */,
+				DA44F86F2CDBE95B001C7C9A /* AI_API */,
 				1D9C3C9B2C876B530047E5CE /* Assets.xcassets */,
 				1D9C3C9D2C876B530047E5CE /* Preview Content */,
 				1D9C3CC12C876EE80047E5CE /* CameraView.swift */,
@@ -250,6 +253,7 @@
 			files = (
 				1D9C3C9F2C876B530047E5CE /* Preview Assets.xcassets in Resources */,
 				1D9C3C9C2C876B530047E5CE /* Assets.xcassets in Resources */,
+				DA44F8702CDBE95B001C7C9A /* AI_API in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
