@@ -37,7 +37,7 @@ struct HomeView: View {
     
                         // Previous Receipt Button
                         NavigationLink(destination: PreviousReceiptsView()) {
-                            Text("Previous Receipt")
+                            Text("Past Receipts")
                                 .font(.title)
                                 .frame(width: geometry.size.width * 0.8) // Fixed width based on available space
                                 .padding()
@@ -53,7 +53,7 @@ struct HomeView: View {
                 Spacer()
             }
             .padding()
-            .navigationTitle("Receipts")
+            .navigationTitle("Home")
         }
         
 
@@ -66,7 +66,18 @@ struct ContentView: View {
     var body: some View {
         
         TabView(selection: $selectedTab) {
-            HomeView().tabItem{Label("Home", systemImage: "house.fill")}.tag("home")
+            HomeView().tabItem {
+                Label("Home", systemImage: "house")
+            }.tag("home")
+            
+            NewReceiptView().tabItem {
+                Label("New Receipt", systemImage: "doc.badge.plus")
+            }.tag("new receipts")
+            
+            PreviousReceiptsView().tabItem {
+                Label("Past Recepts", systemImage: "folder")
+            }.tag("past receipts")
+            
         }
 
     }

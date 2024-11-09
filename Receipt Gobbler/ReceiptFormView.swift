@@ -39,7 +39,8 @@ struct ReceiptFormView: View {
         Item(name: "Notebook", unitPrice: 5.50, quantity: 1),
         Item(name: "Apple", unitPrice: 1.50, quantity: 1.35)
     ]
-    @State private var totalCost: Double = 123.4567
+    @State private var totalCostIncludingTax: Double = 123.4567
+    @State private var tax: Double = 0.0
     @State private var receiptDate: Date = Date() // Use for the date input
     @Environment(\.presentationMode) var presentationMode
     
@@ -51,16 +52,37 @@ struct ReceiptFormView: View {
             Form {
                 Section(header: Text("Receipt Summary")){
                     TextField("Merchant Name", text: $merchantInfo.name)
+                    
                     HStack(spacing: 1.0) {
-                        Text("Total: ")
+                        Text("Total\n(with tax): ")
                             .font(.headline)
-                        Text("$")
+                            .multilineTextAlignment(.center)
                         
-                        TextField(value: $totalCost, format: .number.precision(.fractionLength(2))){
+                        Text("$")
+                            
+                        TextField(value: $totalCostIncludingTax, format: .number.precision(.fractionLength(2))){
                             Text("Total Cost")
+                                
                         }
                         .keyboardType(.decimalPad)
+                        Divider()
+                            .padding(.trailing, 5.0)
+                            
+                        
+                        Text("Tax: ")
+                            .font(.headline)
+                        Text("$")
+                        TextField("Tax", value: $tax, format: .number.precision(.fractionLength(2)))
+                        .keyboardType(.decimalPad)
                     }
+//                    HStack(spacing: 1.0) {
+//                        Text("Tax: ")
+//                            .font(.headline)
+//                        Text("$")
+//                        TextField("Tax", value: $tax, format: .number.precision(.fractionLength(2)))
+//                        .keyboardType(.decimalPad)
+//                    }
+                    
                     
                     
                     DatePicker("Date Purchased:", selection: $receiptDate, displayedComponents: .date).font(.headline)
@@ -75,6 +97,7 @@ struct ReceiptFormView: View {
                 }
                 
                 Section(header: Text("Items")){
+                    //consider using a fixed-width view to make faster
                     Grid{
                         GridRow{
                             Text("Item Name")
@@ -103,6 +126,9 @@ struct ReceiptFormView: View {
                     }
                     
                 }
+//                Section(header: Text("Tax")){
+//                    TextField("Tax", value: $tax, format: .number.precision(.fractionLength(2)))
+//                }
                 
                 
                 //            Section(header: Text("Items")) {
@@ -136,7 +162,7 @@ struct ReceiptFormView: View {
                     .cornerRadius(20)
             }
         }
-        .navigationTitle("New Receipt")
+        .navigationTitle("Input Form")
         .navigationBarTitleDisplayMode(.inline)
         
         

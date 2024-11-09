@@ -4,23 +4,32 @@ struct ReceiptSummaryRowView: View{
     var summary: ReceiptSummary
     var body: some View{
         VStack(alignment: .leading, spacing: 3.0){
-            Text(summary.merchant_name)
-                .foregroundColor(.primary)
-                .font(.headline)
-                .multilineTextAlignment(.center)
+            HStack{
+                Image(systemName:"")
+                Text(summary.merchant_name)
+                    .foregroundColor(.primary)
+                    .font(.title2)
+                    .multilineTextAlignment(.center)
+                    .padding(.vertical)
+            }
+            
             HStack(spacing: 2.0){
-                Text("$")
-                Text(summary.total_cost, format: .number.precision(.fractionLength(2)))
-                    .font(.subheadline)
+                Image(systemName:"dollarsign.circle")
+                Text(String(format: "%.2f", summary.total_cost_including_tax))
+                    .font(.headline)
+//                Text(summary.total_cost_including_tax, format: .number.precision(.fractionLength(2)))
+//                    .font(.subheadline)
                 Spacer()
+                Image(systemName:"calendar.badge.clock")
                 Text(summary.time_purchased, format:.dateTime.day().month().weekday().year())
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     
             }
         }
-        
+        .navigationTitle("Past Receipts")        
     }
+    
 }
 
 struct ReciptSummaryListView: View {
@@ -51,6 +60,8 @@ struct ReciptSummaryListView: View {
             }
         }
     }
+    
+    
 }
 
 
@@ -91,55 +102,64 @@ struct PreviousReceiptsView: View {
 struct ReceiptDetailsView: View {
     var fullInfo: ReceiptInfo
     var body: some View{
-        VStack(){
-            Text(fullInfo.details.merchant.name).font(.title)
-            Text(fullInfo.details.merchant.address).font(.title3).foregroundColor(.secondary).multilineTextAlignment(.center)
-            Text(fullInfo.details.merchant.phone).font(.title3).foregroundColor(.secondary).frame(height: 10.0)
-            Text(fullInfo.summary.time_purchased.formatted(date:.abbreviated, time: .omitted)).font(.title2)
-            Divider()
-            
-            Spacer()
-                .frame(height: 100)
-            Grid{
-                GridRow {
-                    Text("Item Name")
-                    Spacer()
-                    Text("Unit Price")
-                    Spacer()
-                    Text("Quantity")
+        //ScrollView{
+            VStack(){
+                Text(fullInfo.details.merchant.name).font(.title)
+                Text(fullInfo.details.merchant.address).font(.title3).foregroundColor(.secondary).multilineTextAlignment(.center)
+                Text(fullInfo.details.merchant.phone).font(.title3).foregroundColor(.secondary).frame(height: 10.0)
+                Text(fullInfo.summary.time_purchased.formatted(date:.abbreviated, time: .omitted)).font(.title2)
+                Divider()
+                    .padding(.bottom, 30.0)
+                //
+                //            Spacer()
+                //                .frame(height: 100)
+                ScrollView{
+                    Grid{
+                        GridRow {
+                            Text("Item Name")
+                            Spacer()
+                            Text("Unit Price")
+                            Spacer()
+                            Text("Quantity")
+                        }
+                        .font(.headline)
+                        .gridCellUnsizedAxes(.vertical)
+                        Divider()
+                        
+                        ForEach(fullInfo.details.items){
+                            item in GridRow{
+                                Text(item.name)
+                                Spacer()
+                                Text(item.unitPrice, format: .number.precision(.fractionLength(2)))
+                                Spacer().gridCellUnsizedAxes(.horizontal)
+                                Text(item.quantity, format: .number.precision(.fractionLength(2)))
+                            }.gridCellUnsizedAxes(.vertical)
+                            
+                            
+                        }
+                        
+                    }
                 }
-                .font(.headline)
-                .gridCellUnsizedAxes(.vertical)
                 Divider()
                 
-                ForEach(fullInfo.details.items){
-                    item in GridRow{
-                        Text(item.name)
-                        Spacer()
-                        Text(item.unitPrice, format: .number.precision(.fractionLength(2)))
-                        Spacer().gridCellUnsizedAxes(.horizontal)
-                        Text(item.quantity, format: .number.precision(.fractionLength(2)))
-                    }.gridCellUnsizedAxes(.vertical)
-
-
+                HStack(spacing: 2.0) {
+                    Spacer()
+                    Text("Tax:  $") .font(.headline)
+                    Text(fullInfo.summary.tax, format: .number.precision(.fractionLength(2)))
                 }
-
-            }
-            Divider()
-            
-            
-            HStack(spacing: 2.0){
-                Spacer()
-                Text("Total:  $").font(.headline)
-                Text(fullInfo.summary.total_cost, format: .number.precision(.fractionLength(2)))
-            }
-            
-            Spacer()
                 
-            
-            
-        }
-        .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+                HStack(spacing: 2.0){
+                    Spacer()
+                    Text("Total (with tax):  $")
+                        .font(.headline)
+                    Text(fullInfo.summary.total_cost_including_tax, format: .number.precision(.fractionLength(2)))
+                }
+                
+                Spacer()
+                
+            }
+            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+        //}
     }
     
     
