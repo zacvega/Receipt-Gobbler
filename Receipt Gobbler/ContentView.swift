@@ -75,7 +75,7 @@ struct ContentView: View {
             }.tag("new receipts")
             
             PreviousReceiptsView().tabItem {
-                Label("Past Recepts", systemImage: "folder")
+                Label("Past Receipts", systemImage: "folder")
             }.tag("past receipts")
             
         }
