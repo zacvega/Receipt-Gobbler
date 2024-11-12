@@ -9,56 +9,58 @@ struct NewReceiptView: View {
     @State private var isButtonPressed: Bool = false
 
     var body: some View {
-        VStack {
-            // Take a Picture Button
+        NavigationStack {
+            VStack {
+                // Take a Picture Button
+                
             
-        
-            NavigationLink{ ReceiptFormView()
-            } label: {
-                Text("Type")
-                    .font(.title)
-                    .padding()
-                    .frame(width: 200.0)
-                    .background(.cyan)
-                    .foregroundStyle(.white)
-                    .cornerRadius(30)
+                NavigationLink{ ReceiptFormView()
+                } label: {
+                    Text("Type")
+                        .font(.title)
+                        .padding()
+                        .frame(width: 200.0)
+                        .background(.cyan)
+                        .foregroundStyle(.white)
+                        .cornerRadius(30)
+                }
+                NavigationLink{ ScanDocumentView(recognizedText: $recognizedText)
+                } label: {
+                    Text("Scan")
+                        .font(.title)
+                        .padding()
+                        .frame(width: 200.0)
+                        .background(.cyan)
+                        .foregroundStyle(.white)
+                        .cornerRadius(30)
+                }
+                Text("\(recognizedText)")
+                                .padding()
+                                .frame(width: 300)
+                                .background(Color.blue.opacity(0.1))
+                                .cornerRadius(8)
+                                .multilineTextAlignment(.center)
+                
+
+    //            // Type In Button
+    //            NavigationLink(destination: ReceiptFormView()) {
+    //                Text("Type In")
+    //                    .font(.title)
+    //                    .padding()
+    //                    .background(Color.purple)
+    //                    .foregroundColor(.white)
+    //                    .cornerRadius(30)
+    //            }
+    //            .padding()
+
+                // Previous Receipts Button
+                
+
+                //Spacer()
             }
-            NavigationLink{ ScanDocumentView(recognizedText: $recognizedText)
-            } label: {
-                Text("Scan")
-                    .font(.title)
-                    .padding()
-                    .frame(width: 200.0)
-                    .background(.cyan)
-                    .foregroundStyle(.white)
-                    .cornerRadius(30)
-            }
-            Text("\(recognizedText)")
-                            .padding()
-                            .frame(width: 300)
-                            .background(Color.blue.opacity(0.1))
-                            .cornerRadius(8)
-                            .multilineTextAlignment(.center)
-            
-
-//            // Type In Button
-//            NavigationLink(destination: ReceiptFormView()) {
-//                Text("Type In")
-//                    .font(.title)
-//                    .padding()
-//                    .background(Color.purple)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(30)
-//            }
-//            .padding()
-
-            // Previous Receipts Button
-            
-
-            //Spacer()
+            .padding()
+            .navigationTitle("New Receipt")
         }
-        .padding()
-        .navigationTitle("New Receipt")
     }
 }
 

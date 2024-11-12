@@ -49,15 +49,16 @@ struct ReciptSummaryListView: View {
         
     
 
-    var body: some View{
-        NavigationStack{
-            List{
+    var body: some View {
+        NavigationStack {
+            List {
                 ForEach(fullInfos) { i in
-                    NavigationLink(destination: ReceiptDetailsView(fullInfo: i)){
+                    NavigationLink(destination: ReceiptDetailsView(fullInfo: i)) {
                         ReceiptSummaryRowView(summary: i.summary)
                     }
                 }
             }
+            .navigationTitle("Past Receipts")
         }
     }
     
@@ -88,7 +89,6 @@ struct PreviousReceiptsView: View {
             //Text("Past Receipts").font(.title)
             ReciptSummaryListView()
         }
-        .navigationTitle("Past Receipts")
     }
 
     // Formatter to display the date in a readable format
