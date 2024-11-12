@@ -43,19 +43,18 @@ struct ReciptSummaryListView: View {
     //    var d = myFormatter.date(from: "2016/10/08")
     
     //some synthetic data
-    @State var summaries = ReceiptStore.shared.fakeData.summaries
+//    @State var summaries = ReceiptStore.shared.fakeData.summaries
 
-    @State var details = ReceiptStore.shared.fakeData.details
+    //var details: ReceiptDetail
 
 //    @State var fullInfos = ReceiptStore.shared.fakeData.fullInfo
-    @State var fullInfosList = Array(ReceiptStore.receiptsDict.values)
-        
+    @Binding var receiptsDict: Dictionary<UUID,ReceiptInfo>
     
 
     var body: some View{
         NavigationStack{
             List{
-                ForEach(fullInfosList) { i in
+                ForEach(Array(receiptsDict.values)) { i in
                     NavigationLink(destination: ReceiptDetailsView(fullInfo: i)){
                         ReceiptSummaryRowView(summary: i.summary)
                     }
@@ -70,7 +69,9 @@ struct ReciptSummaryListView: View {
 
 
 struct PreviousReceiptsView: View {
-    @ObservedObject var receiptStore = ReceiptStore.shared
+//    @ObservedObject var receiptStore = ReceiptStore.shared
+    @EnvironmentObject var dataModel: ReceiptStore
+
 
 //    var body: some View {
 //        List {
@@ -90,7 +91,7 @@ struct PreviousReceiptsView: View {
     var body: some View {
         VStack{
             //Text("Past Receipts").font(.title)
-            ReciptSummaryListView()
+            ReciptSummaryListView(receiptsDict: $dataModel.receiptsDict)
         }
     }
 

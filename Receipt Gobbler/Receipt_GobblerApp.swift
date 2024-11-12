@@ -10,11 +10,13 @@ import SwiftUI
 @main
 struct Receipt_GobblerApp: App {
     //var mainPageView = ContentView()
+    @StateObject var dataModel: ReceiptStore = ReceiptStore()
     
     var body: some Scene {
         WindowGroup {
             //mainPageView
             ContentView()
+                .environmentObject(dataModel)
             
         }
     }

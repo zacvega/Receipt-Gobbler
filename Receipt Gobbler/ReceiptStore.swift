@@ -71,23 +71,23 @@ class ReceiptStore: ObservableObject {
 
     static let shared = ReceiptStore()
     
-    static var receiptsDict: [UUID: ReceiptInfo] = Dictionary(uniqueKeysWithValues: syntheticData.fullInfo.map{($0.id, $0)})
+    @Published var receiptsDict: [UUID: ReceiptInfo] = Dictionary(uniqueKeysWithValues: syntheticData.fullInfo.map{($0.id, $0)})
     
-    static func createReceiptNew(newReceiptInfo: ReceiptInfo){
+    func createReceiptNew(newReceiptInfo: ReceiptInfo){
         receiptsDict[newReceiptInfo.id] = newReceiptInfo
     }
     
-    static func readReceipt(id: UUID) -> ReceiptInfo{
+    func readReceipt(id: UUID) -> ReceiptInfo{
         //needs to handle error when id doesnt exist
         return receiptsDict[id]!
     }
 
-    static func updateReceipt(newReceiptInfo: ReceiptInfo){
+    func updateReceipt(newReceiptInfo: ReceiptInfo){
         receiptsDict[newReceiptInfo.id] = newReceiptInfo
         
     }
     
-    static func deleteReceipt(id: UUID){
+    func deleteReceipt(id: UUID){
         //maybe explore remove()
         receiptsDict[id] = nil
     }

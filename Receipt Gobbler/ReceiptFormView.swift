@@ -12,6 +12,9 @@ struct ReceiptFormView: View {
     
     @Binding var newReceiptInfo: ReceiptInfo
     
+    
+
+    
     //used to update merchant name in both ReceiptSummary and ReceiptDetail instances
     private var combinedMerchantNameBinding: Binding<String> {
         Binding<String> (
@@ -167,7 +170,10 @@ struct ReceiptFormView: View {
             }
             
             
-            NavigationLink(destination: PreviousReceiptsView()) {
+            //NavigationLink(destination: PreviousReceiptsView()) {
+            //The button works but Does Not Navigate
+            //TODO: display signs of success if no error is thrown, then navigate to past receipts list, then to detail
+                Button(action: saveReceipt) {
                     Text("Save")
                         .font(.title3)
                         .fontWeight(.medium)
@@ -176,6 +182,7 @@ struct ReceiptFormView: View {
                         .foregroundColor(.white)
                         .cornerRadius(30)
                 }
+            //}
                 
             
 //            Button(action: saveReceipt) {
@@ -194,9 +201,11 @@ struct ReceiptFormView: View {
         
         
     }
+    
+    @EnvironmentObject var dataModel: ReceiptStore
 
     private func saveReceipt() {
-        ReceiptStore.createReceiptNew(newReceiptInfo: newReceiptInfo)
+        dataModel.createReceiptNew(newReceiptInfo: newReceiptInfo)
         
         //ReceiptStore.receiptsDict[newReceiptInfo.id] =  newReceiptInfo
 //        guard let price = Double(price) else {
