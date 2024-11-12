@@ -4,6 +4,8 @@ struct HomeView: View {
     @State private var searchText: String = ""
     @ObservedObject var receiptStore = ReceiptStore.shared // Observing ReceiptStore for updates
     
+    @Binding var selectedTab: String
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -25,7 +27,9 @@ struct HomeView: View {
                 GeometryReader { geometry in
                     VStack {
                         // New Receipt Button
-                        NavigationLink(destination: NewReceiptView()) {
+                        Button(action: {
+                            selectedTab = "new_receipt"
+                        }) {
                             Text("New Receipt")
                                 .font(.title)
                                 .frame(width: geometry.size.width * 0.8) // Fixed width based on available space
@@ -36,7 +40,9 @@ struct HomeView: View {
                         }
     
                         // Previous Receipt Button
-                        NavigationLink(destination: PreviousReceiptsView()) {
+                        Button(action: {
+                            selectedTab = "past_receipts"
+                        }) {
                             Text("Past Receipts")
                                 .font(.title)
                                 .frame(width: geometry.size.width * 0.8) // Fixed width based on available space

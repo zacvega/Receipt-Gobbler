@@ -6,17 +6,17 @@ struct ContentView: View {
     var body: some View {
         
         TabView(selection: $selectedTab) {
-            HomeView().tabItem {
+            HomeView(selectedTab: $selectedTab).tabItem {
                 Label("Home", systemImage: "house")
             }.tag("home")
             
             NewReceiptView().tabItem {
                 Label("New Receipt", systemImage: "doc.badge.plus")
-            }.tag("new receipts")
+            }.tag("new_receipt")
             
             PreviousReceiptsView().tabItem {
                 Label("Past Receipts", systemImage: "folder")
-            }.tag("past receipts")
+            }.tag("past_receipts")
             
         }
 
