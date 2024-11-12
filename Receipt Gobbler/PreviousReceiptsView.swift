@@ -61,6 +61,7 @@ struct ReciptSummaryListView: View {
                     }
                 }
             }
+            .navigationTitle("Past Receipts")
         }
     }
     
@@ -91,7 +92,6 @@ struct PreviousReceiptsView: View {
             //Text("Past Receipts").font(.title)
             ReciptSummaryListView()
         }
-        .navigationTitle("Past Receipts")
     }
 
     // Formatter to display the date in a readable format

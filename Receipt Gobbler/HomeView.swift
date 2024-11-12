@@ -9,6 +9,8 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             VStack {
+//                Title(text: "Home")
+                
                 // Display total spend for the current month
                 Text("Total Spend This Month")
                     .font(.headline)
@@ -63,5 +65,13 @@ struct HomeView: View {
         }
         
 
+    }
+}
+
+struct HomeView_Previews: PreviewProvider {
+    @State static var _selectedTab: String = "home"
+    
+    static var previews: some View {
+        HomeView(selectedTab: $_selectedTab)
     }
 }
