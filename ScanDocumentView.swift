@@ -64,9 +64,9 @@ struct ScanDocumentView: UIViewControllerRepresentable {
                 
                 guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
                 
-                let maximumRecognitionCandidates = 1
+                //let maximumRecognitionCandidates = 1
                 for observation in observations {
-                    guard let candidate = observation.topCandidates(maximumRecognitionCandidates).first else { continue }
+                    guard let candidate = observation.topCandidates(1).first else { continue }
                     
                     entireRecognizedText += "\(candidate.string)\n"
                     
