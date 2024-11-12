@@ -5,6 +5,13 @@ struct NewReceiptView: View {
     @State private var showCameraAlert = false
     @State private var capturedImage: UIImage?
     @State private var recognizedText = "Tap button to start scanning"
+    
+    @State var newReceiptInfo: ReceiptInfo = syntheticData.testReceipt1
+    
+    //Use this instead when you're ready
+//    @State var newReceiptInfo: ReceiptInfo = ReceiptInfo()
+    
+    
     //for navigation
     @State private var isButtonPressed: Bool = false
 
@@ -12,18 +19,7 @@ struct NewReceiptView: View {
         VStack {
             // Take a Picture Button
             
-        
-            NavigationLink{ ReceiptFormView()
-            } label: {
-                Text("Type")
-                    .font(.title)
-                    .padding()
-                    .frame(width: 200.0)
-                    .background(.cyan)
-                    .foregroundStyle(.white)
-                    .cornerRadius(30)
-            }
-            NavigationLink{ ScanDocumentView(recognizedText: $recognizedText)
+            NavigationLink{ ScanDocumentView(recognizedText: $recognizedText, returnedNewReceiptInfo: $newReceiptInfo)
             } label: {
                 Text("Scan")
                     .font(.title)
@@ -33,6 +29,21 @@ struct NewReceiptView: View {
                     .foregroundStyle(.white)
                     .cornerRadius(30)
             }
+            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            
+            
+            NavigationLink{ ReceiptFormView(newReceiptInfo: $newReceiptInfo)
+            } label: {
+                Text("Type")
+                    .font(.title)
+                    .padding()
+                    .frame(width: 200.0)
+                    .background(.blue)
+                    .foregroundStyle(.white)
+                    .cornerRadius(30)
+            }
+            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            
             Text("\(recognizedText)")
                             .padding()
                             .frame(width: 300)

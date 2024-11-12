@@ -5,7 +5,7 @@ struct ReceiptSummaryRowView: View{
     var body: some View{
         VStack(alignment: .leading, spacing: 3.0){
             HStack{
-                Image(systemName:"")
+                //Image(systemName:"")
                 Text(summary.merchant_name)
                     .foregroundColor(.primary)
                     .font(.title2)
@@ -17,12 +17,14 @@ struct ReceiptSummaryRowView: View{
                 Image(systemName:"dollarsign.circle")
                 Text(String(format: "%.2f", summary.total_cost_including_tax))
                     .font(.headline)
+                    .fontWeight(.regular)
+                    
 //                Text(summary.total_cost_including_tax, format: .number.precision(.fractionLength(2)))
 //                    .font(.subheadline)
                 Spacer()
                 Image(systemName:"calendar.badge.clock")
                 Text(summary.time_purchased, format:.dateTime.day().month().weekday().year())
-                    .font(.subheadline)
+                    .font(.headline)
                     .foregroundColor(.secondary)
                     
             }
@@ -41,18 +43,19 @@ struct ReciptSummaryListView: View {
     //    var d = myFormatter.date(from: "2016/10/08")
     
     //some synthetic data
-    @State var summaries = ReceiptStore.shared.data.summaries
+    @State var summaries = ReceiptStore.shared.fakeData.summaries
 
-    @State var details = ReceiptStore.shared.data.details
+    @State var details = ReceiptStore.shared.fakeData.details
 
-    @State var fullInfos = ReceiptStore.shared.data.fullInfo
+//    @State var fullInfos = ReceiptStore.shared.fakeData.fullInfo
+    @State var fullInfosList = Array(ReceiptStore.receiptsDict.values)
         
     
 
     var body: some View{
         NavigationStack{
             List{
-                ForEach(fullInfos) { i in
+                ForEach(fullInfosList) { i in
                     NavigationLink(destination: ReceiptDetailsView(fullInfo: i)){
                         ReceiptSummaryRowView(summary: i.summary)
                     }

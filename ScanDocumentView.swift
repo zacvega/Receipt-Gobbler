@@ -15,6 +15,10 @@ struct ScanDocumentView: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var recognizedText: String
     
+    //Modify this to pass back recognized info
+    //Should navigate to a ReceiptFormView instance when done scanning, for user to edit
+    @Binding var returnedNewReceiptInfo: ReceiptInfo
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(recognizedText: $recognizedText, parent: self)
     }

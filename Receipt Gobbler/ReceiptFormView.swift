@@ -8,7 +8,23 @@ struct ReceiptFormView: View {
 //    @State private var merchantAddress: String = ""
 //    @State private var merchantPhone: String = ""
     
-    @State private var merchantInfo: Merchant = Merchant()
+    //@State private var merchantInfo: Merchant = Merchant()
+    
+    @Binding var newReceiptInfo: ReceiptInfo
+    
+    //used to update merchant name in both ReceiptSummary and ReceiptDetail instances
+    private var combinedMerchantNameBinding: Binding<String> {
+        Binding<String> (
+            get: {
+                return self.newReceiptInfo.summary.merchant_name
+            },
+            set: {
+                userModifiedMerchantName in
+                self.newReceiptInfo.summary.merchant_name = userModifiedMerchantName
+                self.newReceiptInfo.details.merchant.name = userModifiedMerchantName
+            }
+        )
+    }
     
     
     //@State private var items: String = ""
@@ -51,7 +67,7 @@ struct ReceiptFormView: View {
         VStack(){
             Form {
                 Section(header: Text("Receipt Summary")){
-                    TextField("Merchant Name", text: $merchantInfo.name)
+                    TextField("Merchant Name", text: combinedMerchantNameBinding)
                     
                     HStack(spacing: 1.0) {
                         Text("Total\n(with tax): ")
@@ -60,7 +76,7 @@ struct ReceiptFormView: View {
                         
                         Text("$")
                             
-                        TextField(value: $totalCostIncludingTax, format: .number.precision(.fractionLength(2))){
+                        TextField(value: $newReceiptInfo.summary.total_cost_including_tax, format: .number.precision(.fractionLength(2))){
                             Text("Total Cost")
                                 
                         }
@@ -72,7 +88,7 @@ struct ReceiptFormView: View {
                         Text("Tax: ")
                             .font(.headline)
                         Text("$")
-                        TextField("Tax", value: $tax, format: .number.precision(.fractionLength(2)))
+                        TextField("Tax", value: $newReceiptInfo.summary.tax, format: .number.precision(.fractionLength(2)))
                         .keyboardType(.decimalPad)
                     }
 //                    HStack(spacing: 1.0) {
@@ -85,14 +101,14 @@ struct ReceiptFormView: View {
                     
                     
                     
-                    DatePicker("Date Purchased:", selection: $receiptDate, displayedComponents: .date).font(.headline)
+                    DatePicker("Date Purchased:", selection: $newReceiptInfo.summary.time_purchased, displayedComponents: .date).font(.headline)
                 }
                 
                 Section(header: Text("Merchant Info")) {
                     //Text("Store Information")
                     
-                    TextField("Merchant Address", text: $merchantInfo.address)
-                    TextField("Merchant Phone", text: $merchantInfo.phone)
+                    TextField("Merchant Address", text: $newReceiptInfo.details.merchant.address)
+                    TextField("Merchant Phone", text: $newReceiptInfo.details.merchant.phone)
                     
                 }
                 
@@ -110,7 +126,7 @@ struct ReceiptFormView: View {
                         
                         Divider()
 
-                        ForEach($items, id: \.id){ $item in
+                        ForEach($newReceiptInfo.details.items, id: \.id){ $item in
                             GridRow{
                                 TextField("Item Name", text: $item.name)
 //                                    .foregroundColor(isFocused ? .blue: .black)
@@ -151,16 +167,27 @@ struct ReceiptFormView: View {
             }
             
             
-            Button(action: saveReceipt) {
-                Text("Save")
-                    .font(.title3)
-                    //.frame(maxWidth: .infinity)
-                    .fontWeight(.medium)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(20)
-            }
+            NavigationLink(destination: PreviousReceiptsView()) {
+                    Text("Save")
+                        .font(.title3)
+                        .fontWeight(.medium)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(30)
+                }
+                
+            
+//            Button(action: saveReceipt) {
+//                Text("Save")
+//                    .font(.title3)
+//                    //.frame(maxWidth: .infinity)
+//                    .fontWeight(.medium)
+//                    .padding()
+//                    .background(Color.blue)
+//                    .foregroundColor(.white)
+//                    .cornerRadius(20)
+//            }
         }
         .navigationTitle("Input Form")
         .navigationBarTitleDisplayMode(.inline)
@@ -169,6 +196,9 @@ struct ReceiptFormView: View {
     }
 
     private func saveReceipt() {
+        ReceiptStore.createReceiptNew(newReceiptInfo: newReceiptInfo)
+        
+        //ReceiptStore.receiptsDict[newReceiptInfo.id] =  newReceiptInfo
 //        guard let price = Double(price) else {
 //            print("Invalid price")
 //            return
@@ -178,12 +208,13 @@ struct ReceiptFormView: View {
 
         // Save receipt with the selected date
 //        ReceiptStore.shared.addReceipt(storeName: storeName, items: itemsArray, price: price, date: receiptDate)
-        presentationMode.wrappedValue.dismiss() // Go back to the previous screen
+        //presentationMode.wrappedValue.dismiss() // Go back to the previous screen
     }
 }
 
 struct ReceiptFormView_Previews: PreviewProvider {
     static var previews: some View {
-        ReceiptFormView()
+        //NewReceiptView()
+        ReceiptFormView(newReceiptInfo: NewReceiptView().$newReceiptInfo)
     }
 }

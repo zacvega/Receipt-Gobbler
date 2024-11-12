@@ -10,8 +10,15 @@ struct Receipt: Identifiable {
 //------ added by David -----
 struct ReceiptInfo: Identifiable {
     let id = UUID()
-    let summary: ReceiptSummary
-    let details: ReceiptDetail
+    var summary: ReceiptSummary
+    var details: ReceiptDetail
+}
+
+extension ReceiptInfo {
+    init(){
+        summary = ReceiptSummary()
+        details = ReceiptDetail(merchant: Merchant(), items: [Item()])
+    }
 }
 
 struct ReceiptSummary: Identifiable {
@@ -20,13 +27,13 @@ struct ReceiptSummary: Identifiable {
     var merchant_name: String = ""
 //    let merchant: Merchant
     var total_cost_including_tax: Double = 0.0
-    var tax: Double = 0.0
+    var tax: Double = 1.37
     var time_purchased: Date = Date()
 }
 
 struct ReceiptDetail {
-    let merchant: Merchant
-    let items: [Item]
+    var merchant: Merchant
+    var items: [Item]
 }
 
 struct Merchant{
@@ -60,15 +67,39 @@ extension Date {
 
 class ReceiptStore: ObservableObject {
     @Published var receipts: [Receipt] = []
-    @Published var data = syntheticData()
+    @Published var fakeData = syntheticData()
 
     static let shared = ReceiptStore()
-
-    // Method to add a new receipt
-    func addReceipt(storeName: String, items: [String], price: Double, date: Date) {
-        let newReceipt = Receipt(storeName: storeName, items: items, price: price, date: date)
-        receipts.append(newReceipt)
+    
+    static var receiptsDict: [UUID: ReceiptInfo] = Dictionary(uniqueKeysWithValues: syntheticData.fullInfo.map{($0.id, $0)})
+    
+    static func createReceiptNew(newReceiptInfo: ReceiptInfo){
+        receiptsDict[newReceiptInfo.id] = newReceiptInfo
     }
+    
+    static func readReceipt(id: UUID) -> ReceiptInfo{
+        //needs to handle error when id doesnt exist
+        return receiptsDict[id]!
+    }
+
+    static func updateReceipt(newReceiptInfo: ReceiptInfo){
+        receiptsDict[newReceiptInfo.id] = newReceiptInfo
+        
+    }
+    
+    static func deleteReceipt(id: UUID){
+        //maybe explore remove()
+        receiptsDict[id] = nil
+    }
+    
+    
+    
+    // Method to add a new receipt
+//    func addReceipt(storeName: String, items: [String], price: Double, date: Date) {
+//        let newReceipt = Receipt(storeName: storeName, items: items, price: price, date: date)
+//        receipts.append(newReceipt)
+//    }
+    
     
     // Computed property to get the total spend for the current month
     var totalSpendThisMonth: Double {
@@ -88,7 +119,9 @@ class ReceiptStore: ObservableObject {
 
 
 struct syntheticData{
-    var fullInfo : [ReceiptInfo] = [
+    static var testReceipt1 : ReceiptInfo = fullInfo[5]
+    
+    static var fullInfo : [ReceiptInfo] = [
         // First ReceiptInfo (Plaza 900)
         ReceiptInfo(
             summary: ReceiptSummary(merchant_name: "Plaza 900", total_cost_including_tax: 12.005, time_purchased: Date(dateString: "2024/01/02")!),
