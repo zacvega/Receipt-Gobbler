@@ -120,6 +120,7 @@ class ReceiptStore: ObservableObject {
 
 struct syntheticData{
     static var testReceipt1 : ReceiptInfo = fullInfo[5]
+    static var testReceipt2 : ReceiptInfo = fullInfo[0]
     
     static var fullInfo : [ReceiptInfo] = [
         // First ReceiptInfo (Plaza 900)

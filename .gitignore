@@ -67,3 +67,4 @@ fastlane/test_output
 # [ custom stuff ]
 Receipt Gobbler.xcscheme
 .DS_Store
+.swiftpm

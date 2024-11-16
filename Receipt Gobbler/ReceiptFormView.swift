@@ -11,7 +11,7 @@ struct ReceiptFormView: View {
     //@State private var merchantInfo: Merchant = Merchant()
     
     @Binding var newReceiptInfo: ReceiptInfo
-    
+//    @Binding var parentPath: [String]
     
 
     
