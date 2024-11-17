@@ -4,9 +4,15 @@
     },
 
     "paths": {
-        "log": "/Log",
         "api": "/Configs/APIs.json",
         "prompts": "/Configs/Prompts.json",
-        "schemas": "/Schemas"
+        "extraction_schemas": [
+            "extraction_structured_no_alias.json",
+            "extraction_basic_with_alias.json",
+            "extraction_basic_no_alias.json"
+        ],
+        "sql_schemas": [
+            "sql_hold.json"
+        ]
     }
 }

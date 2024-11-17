@@ -1,6 +1,7 @@
 import Foundation
 import AnyCodable
 
+
 struct OpenAiRequest: Codable {
     var model: String
     var messages: [Message]

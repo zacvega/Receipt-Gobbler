@@ -80,8 +80,19 @@ func cleanupOcr(_ recogs: [Recognition]) -> String {
 }
 
 // uses AI to extract structured data from the cleaned up OCR output
-func extractReceiptData(_ cleanOcrOutput: String) -> ReceiptInfo {
-    // TODO
+func extractReceiptData(_ cleanOcrOutput: String) async -> ReceiptInfo {
+//    let prompt = "mini_extract"
+//    let schema = "structured_no_alias"
+//    let api = "openAI"
+//    let result = await ExtractionAPI.extractData(inputString: cleanOcrOutput, promptString: prompt, schemaString: schema, apiString: api)
+    
+//    if let result {
+//        print(result)
+//    }
+    
+    
+    
+    // TODO: return real data
     return syntheticData.testReceipt2
 }
 
@@ -162,14 +173,15 @@ struct ScanDocumentView: UIViewControllerRepresentable {
             let ocrOutput = recognizeText(from: extractedImages)
             let cleanedOcrOutput = cleanupOcr(ocrOutput)
             print(cleanedOcrOutput)
-            let extractedData = extractReceiptData(cleanedOcrOutput)
+            //            recognizedText.wrappedValue = processedText
             
-//            recognizedText.wrappedValue = processedText
-            
-            parent.returnedNewReceiptInfo = extractedData
-            parent.parentPath.append("receipt_form")
-//            parent.presentationMode.wrappedValue.dismiss()
-            
+            Task {
+                let extractedData = await extractReceiptData(cleanedOcrOutput)
+                parent.returnedNewReceiptInfo = extractedData
+                parent.parentPath.append("receipt_form")
+                // parent.presentationMode.wrappedValue.dismiss()
+            }
+
             
         }
         
