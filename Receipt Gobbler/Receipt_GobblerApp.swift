@@ -36,7 +36,7 @@ struct Receipt_GobblerApp: App {
     
     init() {
         
-        apiDemo()
+//        apiDemo()
 
     }
     
