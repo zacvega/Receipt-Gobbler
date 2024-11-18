@@ -1,11 +1,11 @@
 import Foundation
-struct Receipt: Identifiable {
-    let id = UUID() // Unique identifier for each receipt
-    let storeName: String
-    let items: [String]
-    let price: Double
-    let date: Date // Changed from time to date
-}
+//struct Receipt: Identifiable {
+//    let id = UUID() // Unique identifier for each receipt
+//    let storeName: String
+//    let items: [String]
+//    let price: Double
+//    let date: Date // Changed from time to date
+//}
 
 //------ added by David -----
 struct ReceiptInfo: Identifiable {
@@ -69,7 +69,7 @@ class ReceiptStore: ObservableObject {
 //    @Published var receipts: [Receipt] = []
     @Published var fakeData = syntheticData()
 
-    static let shared = ReceiptStore()
+    //static let shared = ReceiptStore()
     
     @Published var receiptsDict: [UUID: ReceiptInfo] = Dictionary(uniqueKeysWithValues: syntheticData.fullInfo.map{($0.id, $0)})
     
@@ -109,19 +109,14 @@ class ReceiptStore: ObservableObject {
         let calendar = Calendar.current
         let currentMonth = calendar.component(.month, from: Date())
         let currentYear = calendar.component(.year, from: Date())
-  
-        var totalSpend = 0.0
-        for rEntry in receiptsDict {
-            let receiptInfo = rEntry.value
-            let receiptDate = receiptInfo.summary.time_purchased
-            let receiptMonth = calendar.component(.month, from: receiptDate)
-            let receiptYear = calendar.component(.year, from: receiptDate)
-            if receiptMonth == currentMonth && receiptYear == currentYear {
-                totalSpend += receiptInfo.summary.total_cost_including_tax
-            }
+
+        return receiptsDict.values.filter { receipt in
+            let receiptMonth = calendar.component(.month, from: receipt.summary.time_purchased)
+            let receiptYear = calendar.component(.year, from: receipt.summary.time_purchased)
+            return receiptMonth == currentMonth && receiptYear == currentYear
+        }.reduce(0) { total, receipt in
+            total + receipt.summary.total_cost_including_tax
         }
-        
-        return totalSpend
     }
 }
 
