@@ -74,9 +74,7 @@ class ReceiptStore: ObservableObject {
     @Published var receiptsDict: [UUID: ReceiptInfo] = Dictionary(uniqueKeysWithValues: syntheticData.fullInfo.map{($0.id, $0)})
     
     func createReceiptNew(newReceiptInfo: ReceiptInfo){
-        DLOG("createReceiptNew()")
         receiptsDict[newReceiptInfo.id] = newReceiptInfo
-//        objectWillChange.send()
     }
     
     func readReceipt(id: UUID) -> ReceiptInfo{
@@ -105,7 +103,6 @@ class ReceiptStore: ObservableObject {
     
     // Computed property to get the total spend for the current month
     var totalSpendThisMonth: Double {
-        DLOG("totalSpendThisMonth()")
         let calendar = Calendar.current
         let currentMonth = calendar.component(.month, from: Date())
         let currentYear = calendar.component(.year, from: Date())

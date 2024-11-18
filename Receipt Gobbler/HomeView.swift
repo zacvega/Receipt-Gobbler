@@ -73,6 +73,9 @@ struct HomeView_Previews: PreviewProvider {
     @State static var _selectedTab: String = "home"
     
     static var previews: some View {
+        @StateObject var dataModel: ReceiptStore = ReceiptStore()
+        
         HomeView(selectedTab: $_selectedTab)
+            .environmentObject(dataModel)
     }
 }
