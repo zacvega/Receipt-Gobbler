@@ -10,16 +10,6 @@ import SwiftUI
 import VisionKit
 import Vision
 
-import AnyCodable
-
-let DEBUG_LOGGING = true;
-
-func DLOG(_ params: Any...) {
-    if DEBUG_LOGGING {
-        print(params)
-    }
-}
-
 func centerOfRect(_ x1: Double, _ y1: Double, _ x2: Double, _ y2: Double) -> (Double, Double) {
     return ((x1+x2)/2.0, (y1+y2)/2.0)
 }
@@ -91,7 +81,7 @@ func cleanupOcr(_ recogs: [Recognition]) -> String {
 
 // return a hardcoded CACHED response from the API to avoid wasting time and money on real API calls
 func fakeExtractData(inputString: String, promptString: String, schemaString: String, apiString: String) async -> String? {
-    let fakeDataUrl = Bundle.main.url(forResource: "ai_output", withExtension: "json")!
+    let fakeDataUrl = Bundle.main.url(forResource: "chipotle_ai_extraction", withExtension: "json")!
     let fakeData: String?
     do { fakeData = try String(contentsOf: fakeDataUrl, encoding: .utf8)} catch { fakeData = nil }
     return fakeData!
@@ -114,6 +104,7 @@ struct StructuredNoAliasResponse: Codable {
     let date: String
 }
 
+// parses API response as JSON and converts to ReceiptInfo?
 func handleAPIResponse(_ response: String) -> ReceiptInfo? {
     let decoder = JSONDecoder()
     let rOpt = try? decoder.decode(StructuredNoAliasResponse.self, from: response.data(using: .utf8)!)
@@ -140,19 +131,6 @@ func handleAPIResponse(_ response: String) -> ReceiptInfo? {
         merchant: Merchant(name: r.companyName, address: r.companyAddress, phone: ""),
         items: items)
     )
-    
-    
-//    let responseDict = try! decoder.decode([String: AnyDecodable].self, from: response.data(using: .utf8)!)
-    
-    
-    
-//    if responseDict["subtotal"] == nil { return nil }
-//    if responseDict[""]
-//    
-//    let subtotal = responseDict["subtotal"]!.value as? Float
-    
-    
-//    let s: String = responseDict["a"]!.value as! String
 }
 
 // uses AI to extract structured data from the cleaned up OCR output
@@ -161,19 +139,18 @@ func extractReceiptData(_ cleanOcrOutput: String) async -> ReceiptInfo? {
     let schema = "structured_no_alias"
     let api = "openAI"
     
-//    let result = await ExtractionAPI.extractData(inputString: cleanOcrOutput, promptString: prompt, schemaString: schema, apiString: api)
-    let result = await fakeExtractData(inputString: cleanOcrOutput, promptString: prompt, schemaString: schema, apiString: api)
+    let result: String?
+    if USE_MOCK_API_RESPONSE {
+        result = await fakeExtractData(inputString: cleanOcrOutput, promptString: prompt, schemaString: schema, apiString: api)
+    }
+    else {
+        result = await ExtractionAPI.extractData(inputString: cleanOcrOutput, promptString: prompt, schemaString: schema, apiString: api)
+    }
     
     if let result {
-//        print(result)
-        
         return handleAPIResponse(result)
-        
     }
     return nil
-    
-    // TODO: return real data
-//    return syntheticData.testReceipt2
 }
 
 class Recognition {
