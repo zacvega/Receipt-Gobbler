@@ -4,8 +4,7 @@ It works, though there are a few bugs. By default a cached response generated us
 
 ### Major TODOs, bugs to fix
 
-* Bug: Adding multiple receipts will overwrite the previous one
-* Feature: Persistently save data
+See https://github.com/zacvega/Receipt-Gobbler/issues
 
 ### Xcode tips
 

@@ -207,6 +207,9 @@ struct ReceiptFormView: View {
     private func saveReceipt() {
         dataModel.createReceiptNew(newReceiptInfo: newReceiptInfo)
         
+        // replace newReceiptInfo with a fresh object for later use (since NewReceiptView owns it and that view is never destroyed)
+        newReceiptInfo = ReceiptInfo()
+        
         //ReceiptStore.receiptsDict[newReceiptInfo.id] =  newReceiptInfo
 //        guard let price = Double(price) else {
 //            print("Invalid price")
