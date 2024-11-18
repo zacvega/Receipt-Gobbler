@@ -217,7 +217,9 @@ struct ReceiptFormView: View {
 
         // Save receipt with the selected date
 //        ReceiptStore.shared.addReceipt(storeName: storeName, items: itemsArray, price: price, date: receiptDate)
-        //presentationMode.wrappedValue.dismiss() // Go back to the previous screen
+        
+        // Go back to the previous screen
+        presentationMode.wrappedValue.dismiss()
     }
 }
 

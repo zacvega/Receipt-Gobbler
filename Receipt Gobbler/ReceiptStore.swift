@@ -66,7 +66,7 @@ extension Date {
 
 
 class ReceiptStore: ObservableObject {
-    @Published var receipts: [Receipt] = []
+//    @Published var receipts: [Receipt] = []
     @Published var fakeData = syntheticData()
 
     static let shared = ReceiptStore()
@@ -74,7 +74,9 @@ class ReceiptStore: ObservableObject {
     @Published var receiptsDict: [UUID: ReceiptInfo] = Dictionary(uniqueKeysWithValues: syntheticData.fullInfo.map{($0.id, $0)})
     
     func createReceiptNew(newReceiptInfo: ReceiptInfo){
+        DLOG("createReceiptNew()")
         receiptsDict[newReceiptInfo.id] = newReceiptInfo
+//        objectWillChange.send()
     }
     
     func readReceipt(id: UUID) -> ReceiptInfo{
@@ -103,17 +105,23 @@ class ReceiptStore: ObservableObject {
     
     // Computed property to get the total spend for the current month
     var totalSpendThisMonth: Double {
+        DLOG("totalSpendThisMonth()")
         let calendar = Calendar.current
         let currentMonth = calendar.component(.month, from: Date())
         let currentYear = calendar.component(.year, from: Date())
-
-        return receipts.filter { receipt in
-            let receiptMonth = calendar.component(.month, from: receipt.date)
-            let receiptYear = calendar.component(.year, from: receipt.date)
-            return receiptMonth == currentMonth && receiptYear == currentYear
-        }.reduce(0) { total, receipt in
-            total + receipt.price
+  
+        var totalSpend = 0.0
+        for rEntry in receiptsDict {
+            let receiptInfo = rEntry.value
+            let receiptDate = receiptInfo.summary.time_purchased
+            let receiptMonth = calendar.component(.month, from: receiptDate)
+            let receiptYear = calendar.component(.year, from: receiptDate)
+            if receiptMonth == currentMonth && receiptYear == currentYear {
+                totalSpend += receiptInfo.summary.total_cost_including_tax
+            }
         }
+        
+        return totalSpend
     }
 }
 
