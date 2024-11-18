@@ -2,7 +2,8 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var searchText: String = ""
-    @ObservedObject var receiptStore = ReceiptStore.shared // Observing ReceiptStore for updates
+    //@ObservedObject var receiptStore = ReceiptStore.shared // Observing ReceiptStore for updates
+    @EnvironmentObject var dataModel: ReceiptStore
     
     @Binding var selectedTab: String
     
@@ -16,7 +17,7 @@ struct HomeView: View {
                     .font(.headline)
                     .padding(.top, 20)
 
-                Text("$\(receiptStore.totalSpendThisMonth, specifier: "%.2f")")
+                Text("$\(dataModel.totalSpendThisMonth, specifier: "%.2f")")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(.bottom, 20)
@@ -72,6 +73,9 @@ struct HomeView_Previews: PreviewProvider {
     @State static var _selectedTab: String = "home"
     
     static var previews: some View {
+        @StateObject var dataModel: ReceiptStore = ReceiptStore()
+        
         HomeView(selectedTab: $_selectedTab)
+            .environmentObject(dataModel)
     }
 }

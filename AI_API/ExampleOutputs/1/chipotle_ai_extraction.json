@@ -1,0 +1,22 @@
+{
+    "subtotal": 11.7,
+    "companyAddress": "2540 Broadway Bluffs Dr., Columbia, MU 65201",
+    "companyName": "Chipotle",
+    "time": "21:12",
+    "total": 12.63,
+    "items":
+    [
+        {
+            "quantity": 1,
+            "itemPrice": 10.25,
+            "itemName": "Steak Bowl"
+        },
+        {
+            "quantity": 1,
+            "itemPrice": 1.45,
+            "itemName": "Queso Blarco"
+        }
+    ],
+    "tax": 0.93,
+    "date": "2024-11-12"
+}

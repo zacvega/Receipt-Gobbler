@@ -6,7 +6,9 @@ struct NewReceiptView: View {
     @State private var capturedImage: UIImage?
     @State private var recognizedText = "Tap button to start scanning"
     
-   @State var newReceiptInfo: ReceiptInfo = syntheticData.testReceipt1
+    @State var newReceiptInfo: ReceiptInfo = syntheticData.testReceipt1
+    
+    @State private var path: [String] = []
     
 //    Use this instead when you're ready
 //    @State var newReceiptInfo: ReceiptInfo = ReceiptInfo()
@@ -16,10 +18,9 @@ struct NewReceiptView: View {
 //    @State private var isButtonPressed: Bool = false
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             VStack(spacing: 30.0) {
-                NavigationLink{ ReceiptFormView(newReceiptInfo: $newReceiptInfo)
-                } label: {
+                NavigationLink(value: "receipt_form") {
                     Text("Type")
                         .font(.title)
                         .padding()
@@ -29,8 +30,18 @@ struct NewReceiptView: View {
                         .cornerRadius(30)
                 }
                 
-                NavigationLink{ ScanDocumentView(recognizedText: $recognizedText, returnedNewReceiptInfo: $newReceiptInfo)
-                } label: {
+//                NavigationLink{ ReceiptFormView(newReceiptInfo: $newReceiptInfo)
+//                } label: {
+//                    Text("Type")
+//                        .font(.title)
+//                        .padding()
+//                        .frame(width: 200.0)
+//                        .background(.cyan)
+//                        .foregroundStyle(.white)
+//                        .cornerRadius(30)
+//                }
+                
+                NavigationLink(value: "receipt_scan") {
                     Text("Scan")
                         .font(.title)
                         .padding()
@@ -39,6 +50,17 @@ struct NewReceiptView: View {
                         .foregroundStyle(.white)
                         .cornerRadius(30)
                 }
+                
+//                NavigationLink{ ScanDocumentView(recognizedText: $recognizedText, returnedNewReceiptInfo: $newReceiptInfo)
+//                } label: {
+//                    Text("Scan")
+//                        .font(.title)
+//                        .padding()
+//                        .frame(width: 200.0)
+//                        .background(.blue)
+//                        .foregroundStyle(.white)
+//                        .cornerRadius(30)
+//                }
                 
                 Text("\(recognizedText)")
                                 .padding()
@@ -66,6 +88,14 @@ struct NewReceiptView: View {
             }
             .padding()
             .navigationTitle("New Receipt")
+            .navigationDestination(for: String.self) { value in
+                if value == "receipt_form" {
+                    ReceiptFormView(newReceiptInfo: $newReceiptInfo)
+                }
+                else if value == "receipt_scan" {
+                    ScanDocumentView(recognizedText: $recognizedText, returnedNewReceiptInfo: $newReceiptInfo, parentPath: $path)
+                }
+            }
         }
     }
 }

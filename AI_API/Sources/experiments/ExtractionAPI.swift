@@ -1,5 +1,10 @@
 import Foundation
 
+class ConfigPath {
+//    case configPath = "./Configs/SystemConfig.json"
+    static var configPath = Bundle.main.path(forResource: "SystemConfig", ofType: "json")!
+}
+
 enum MainExtractionError: Error {
     case promptError
     case schemaError
@@ -14,7 +19,7 @@ class ExtractionAPI {
 
             do {
 
-                try Config.launchConfigs(configPath: ConfigPath.configPath.rawValue)
+                try Config.launchConfigs(configPath: ConfigPath.configPath)
                 
 
                 guard let api = APIHandler.findAPIByName(apiString) else {

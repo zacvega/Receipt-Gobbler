@@ -12,10 +12,12 @@ struct UserConfig: Codable {
 }
 
 struct Paths: Codable {
-    let log: String
+//    let log: String
     let api: String
     let prompts: String
-    let schemas: String
+//    let schemas: String
+    let extraction_schemas: [String]
+    let sql_schemas: [String]
 }
 
 enum ConfigError: Error {
@@ -57,11 +59,33 @@ class Config {
             throw ConfigError.promptConfigError
         }
 
-        do {
-            guard let schemaFilePath = getFilePath(fileName: config.paths.schemas) else {
-                throw ConfigError.schemaConfigError
+        var extractionSchemaFPs: [String] = []
+        var sqlSchemaFPs: [String] = []
+        for fn in config.paths.extraction_schemas {
+            guard let fp = getFilePath(fileName: fn) else {
+                throw ConfigError.apiConfigError
             }
-            try SchemaHandler.loadSchemaList(from: schemaFilePath)
+            extractionSchemaFPs.append(fp)
+        }
+        for fn in config.paths.sql_schemas {
+            guard let fp = getFilePath(fileName: fn) else {
+                throw ConfigError.apiConfigError
+            }
+            sqlSchemaFPs.append(fp)
+        }
+        
+//        do {
+//            guard let schemaFilePath = getFilePath(fileName: config.paths.schemas) else {
+//                throw ConfigError.schemaConfigError
+//            }
+//            try SchemaHandler.loadSchemaList(from: schemaFilePath)
+//        } catch {
+//            print("Error loading schemas: \(error)")
+//            throw ConfigError.schemaConfigError
+//        }
+        
+        do {
+            try SchemaHandler.loadSchemaList(extractionSchemaFPs: extractionSchemaFPs, sqlSchemaFPs: sqlSchemaFPs)
         } catch {
             print("Error loading schemas: \(error)")
             throw ConfigError.schemaConfigError

@@ -1,11 +1,11 @@
 import Foundation
-struct Receipt: Identifiable {
-    let id = UUID() // Unique identifier for each receipt
-    let storeName: String
-    let items: [String]
-    let price: Double
-    let date: Date // Changed from time to date
-}
+//struct Receipt: Identifiable {
+//    let id = UUID() // Unique identifier for each receipt
+//    let storeName: String
+//    let items: [String]
+//    let price: Double
+//    let date: Date // Changed from time to date
+//}
 
 //------ added by David -----
 struct ReceiptInfo: Identifiable {
@@ -66,10 +66,10 @@ extension Date {
 
 
 class ReceiptStore: ObservableObject {
-    @Published var receipts: [Receipt] = []
+//    @Published var receipts: [Receipt] = []
     @Published var fakeData = syntheticData()
 
-    static let shared = ReceiptStore()
+    //static let shared = ReceiptStore()
     
     @Published var receiptsDict: [UUID: ReceiptInfo] = Dictionary(uniqueKeysWithValues: syntheticData.fullInfo.map{($0.id, $0)})
     
@@ -107,12 +107,12 @@ class ReceiptStore: ObservableObject {
         let currentMonth = calendar.component(.month, from: Date())
         let currentYear = calendar.component(.year, from: Date())
 
-        return receipts.filter { receipt in
-            let receiptMonth = calendar.component(.month, from: receipt.date)
-            let receiptYear = calendar.component(.year, from: receipt.date)
+        return receiptsDict.values.filter { receipt in
+            let receiptMonth = calendar.component(.month, from: receipt.summary.time_purchased)
+            let receiptYear = calendar.component(.year, from: receipt.summary.time_purchased)
             return receiptMonth == currentMonth && receiptYear == currentYear
         }.reduce(0) { total, receipt in
-            total + receipt.price
+            total + receipt.summary.total_cost_including_tax
         }
     }
 }
@@ -120,6 +120,7 @@ class ReceiptStore: ObservableObject {
 
 struct syntheticData{
     static var testReceipt1 : ReceiptInfo = fullInfo[5]
+    static var testReceipt2 : ReceiptInfo = fullInfo[0]
     
     static var fullInfo : [ReceiptInfo] = [
         // First ReceiptInfo (Plaza 900)
