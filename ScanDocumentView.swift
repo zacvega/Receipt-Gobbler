@@ -136,7 +136,7 @@ func handleAPIResponse(_ response: String) -> ReceiptInfo? {
 // uses AI to extract structured data from the cleaned up OCR output
 func extractReceiptData(_ cleanOcrOutput: String) async -> ReceiptInfo? {
     let prompt = "mini_extract"
-    let schema = "structured_no_alias"
+    let schema = "extraction_structured_no_alias"
     let api = "openAI"
     
     let result: String?
@@ -148,6 +148,7 @@ func extractReceiptData(_ cleanOcrOutput: String) async -> ReceiptInfo? {
     }
     
     if let result {
+        DLOG(result)
         return handleAPIResponse(result)
     }
     return nil
@@ -229,7 +230,8 @@ struct ScanDocumentView: UIViewControllerRepresentable {
             let extractedImages = extractImages(from: scan)
             let ocrOutput = recognizeText(from: extractedImages)
             let cleanedOcrOutput = cleanupOcr(ocrOutput)
-            print(cleanedOcrOutput)
+//            print(cleanedOcrOutput)
+            DLOG(cleanedOcrOutput)
             //            recognizedText.wrappedValue = processedText
             
             Task {

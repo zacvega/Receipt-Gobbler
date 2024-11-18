@@ -1,0 +1,27 @@
+{
+    "items":
+    [
+        {
+            "itemPrice": 5,
+            "quantity": 1,
+            "itemName": "McDouble Ml Deal"
+        },
+        {
+            "itemPrice": 0,
+            "quantity": 1,
+            "itemName": "Ketchup Packet"
+        },
+        {
+            "itemPrice": 0,
+            "quantity": 1,
+            "itemName": "Diet Coke"
+        }
+    ],
+    "companyName": "McDonald's Restaurant #1917",
+    "total": 5.45,
+    "subtotal": 5,
+    "time": "18:17",
+    "tax": 0.45,
+    "companyAddress": "415 STADIUM BLVD, COLUMBIA, MO 65201",
+    "date": "2024-10-07"
+}

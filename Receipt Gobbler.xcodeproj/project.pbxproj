@@ -21,6 +21,8 @@
 		1D9C3CCA2C8775F20047E5CE /* PreviousReceiptsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3CC92C8775F20047E5CE /* PreviousReceiptsView.swift */; };
 		C92BC6C72CE2D0E30063C35C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BC6C62CE2D0E30063C35C /* HomeView.swift */; };
 		C93C3A832CE9889300BD1708 /* chipotle_ai_extraction.json in Resources */ = {isa = PBXBuildFile; fileRef = C93C3A822CE9889300BD1708 /* chipotle_ai_extraction.json */; };
+		C93C3A8C2CEAEE6400BD1708 /* mcdonalds_cleaned_ocr_output.txt in Resources */ = {isa = PBXBuildFile; fileRef = C93C3A8B2CEAEE6400BD1708 /* mcdonalds_cleaned_ocr_output.txt */; };
+		C93C3A8E2CEAF10D00BD1708 /* mcdonalds_ai_extraction.json in Resources */ = {isa = PBXBuildFile; fileRef = C93C3A8D2CEAF10D00BD1708 /* mcdonalds_ai_extraction.json */; };
 		C9D440F62CE966ED0066E439 /* r3.txt in Resources */ = {isa = PBXBuildFile; fileRef = C9D440D42CE966ED0066E439 /* r3.txt */; };
 		C9D440F72CE966ED0066E439 /* r2.txt in Resources */ = {isa = PBXBuildFile; fileRef = C9D440D52CE966ED0066E439 /* r2.txt */; };
 		C9D440F82CE966ED0066E439 /* r1.txt in Resources */ = {isa = PBXBuildFile; fileRef = C9D440D62CE966ED0066E439 /* r1.txt */; };
@@ -90,7 +92,10 @@
 		C92BC6C62CE2D0E30063C35C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C93C3A822CE9889300BD1708 /* chipotle_ai_extraction.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = chipotle_ai_extraction.json; sourceTree = "<group>"; };
 		C93C3A842CEAAF1E00BD1708 /* main.old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.old.swift; sourceTree = "<group>"; };
-		C93C3A852CEAE75800BD1708 /* chipotle_receipt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chipotle_receipt.jpg; sourceTree = "<group>"; };
+		C93C3A8B2CEAEE6400BD1708 /* mcdonalds_cleaned_ocr_output.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = mcdonalds_cleaned_ocr_output.txt; sourceTree = "<group>"; };
+		C93C3A8D2CEAF10D00BD1708 /* mcdonalds_ai_extraction.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mcdonalds_ai_extraction.json; sourceTree = "<group>"; };
+		C93C3A912CEAF4D400BD1708 /* mcdonalds_receipt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mcdonalds_receipt.png; sourceTree = "<group>"; };
+		C93C3A952CEAF55C00BD1708 /* chipotle_receipt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chipotle_receipt.jpg; sourceTree = "<group>"; };
 		C9CB045B2CCABA3B00194C24 /* Receipt-Gobbler-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Receipt-Gobbler-Info.plist"; sourceTree = SOURCE_ROOT; };
 		C9D440D42CE966ED0066E439 /* r3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = r3.txt; sourceTree = "<group>"; };
 		C9D440D52CE966ED0066E439 /* r2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = r2.txt; sourceTree = "<group>"; };
@@ -220,11 +225,21 @@
 		C93C3A862CEAE7B300BD1708 /* 1 */ = {
 			isa = PBXGroup;
 			children = (
-				C93C3A852CEAE75800BD1708 /* chipotle_receipt.jpg */,
+				C93C3A952CEAF55C00BD1708 /* chipotle_receipt.jpg */,
 				C9D441172CE97E450066E439 /* chipotle_cleaned_ocr_output.txt */,
 				C93C3A822CE9889300BD1708 /* chipotle_ai_extraction.json */,
 			);
 			path = 1;
+			sourceTree = "<group>";
+		};
+		C93C3A8A2CEAEE4E00BD1708 /* 2 */ = {
+			isa = PBXGroup;
+			children = (
+				C93C3A912CEAF4D400BD1708 /* mcdonalds_receipt.png */,
+				C93C3A8B2CEAEE6400BD1708 /* mcdonalds_cleaned_ocr_output.txt */,
+				C93C3A8D2CEAF10D00BD1708 /* mcdonalds_ai_extraction.json */,
+			);
+			path = 2;
 			sourceTree = "<group>";
 		};
 		C9D440D22CE966ED0066E439 /* AI_API */ = {
@@ -323,6 +338,7 @@
 		C9D441162CE97E120066E439 /* ExampleOutputs */ = {
 			isa = PBXGroup;
 			children = (
+				C93C3A8A2CEAEE4E00BD1708 /* 2 */,
 				C93C3A862CEAE7B300BD1708 /* 1 */,
 			);
 			path = ExampleOutputs;
@@ -449,6 +465,7 @@
 				C9D440FF2CE966ED0066E439 /* sql_hold.json in Resources */,
 				C9D441022CE966ED0066E439 /* Prompts.json in Resources */,
 				C9D440F92CE966ED0066E439 /* r4.txt in Resources */,
+				C93C3A8C2CEAEE6400BD1708 /* mcdonalds_cleaned_ocr_output.txt in Resources */,
 				C9D440F62CE966ED0066E439 /* r3.txt in Resources */,
 				C9D441032CE966ED0066E439 /* Schemas.json in Resources */,
 				C9D440FD2CE966ED0066E439 /* extraction_basic_with_alias.json in Resources */,
@@ -457,6 +474,7 @@
 				1D9C3C9F2C876B530047E5CE /* Preview Assets.xcassets in Resources */,
 				1D9C3C9C2C876B530047E5CE /* Assets.xcassets in Resources */,
 				C9D441002CE966ED0066E439 /* .gitignore in Resources */,
+				C93C3A8E2CEAF10D00BD1708 /* mcdonalds_ai_extraction.json in Resources */,
 				C9D440FA2CE966ED0066E439 /* image1.JPG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

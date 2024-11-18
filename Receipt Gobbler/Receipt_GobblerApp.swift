@@ -39,7 +39,9 @@ func apiDemo() async {
 
 func DLOG(_ params: Any...) {
     if DEBUG_LOGGING {
-        print(params)
+        for param in params {
+            print(param)
+        }
     }
 }
 
