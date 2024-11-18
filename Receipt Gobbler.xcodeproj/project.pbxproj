@@ -38,7 +38,6 @@
 		C9D441022CE966ED0066E439 /* Prompts.json in Resources */ = {isa = PBXBuildFile; fileRef = C9D440E42CE966ED0066E439 /* Prompts.json */; };
 		C9D441032CE966ED0066E439 /* Schemas.json in Resources */ = {isa = PBXBuildFile; fileRef = C9D440E52CE966ED0066E439 /* Schemas.json */; };
 		C9D441042CE966ED0066E439 /* APIs.json in Resources */ = {isa = PBXBuildFile; fileRef = C9D440E62CE966ED0066E439 /* APIs.json */; };
-		C9D441052CE966ED0066E439 /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = C9D440E72CE966ED0066E439 /* .gitattributes */; };
 		C9D441062CE966ED0066E439 /* PromptHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D440EA2CE966ED0066E439 /* PromptHandler.swift */; };
 		C9D441072CE966ED0066E439 /* WrapOpenAIAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D440EB2CE966ED0066E439 /* WrapOpenAIAPI.swift */; };
 		C9D441082CE966ED0066E439 /* UnwrapOpenAIAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D440EC2CE966ED0066E439 /* UnwrapOpenAIAPI.swift */; };
@@ -112,7 +111,6 @@
 		C9D440E42CE966ED0066E439 /* Prompts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Prompts.json; sourceTree = "<group>"; };
 		C9D440E52CE966ED0066E439 /* Schemas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Schemas.json; sourceTree = "<group>"; };
 		C9D440E62CE966ED0066E439 /* APIs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = APIs.json; sourceTree = "<group>"; };
-		C9D440E72CE966ED0066E439 /* .gitattributes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
 		C9D440EA2CE966ED0066E439 /* PromptHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptHandler.swift; sourceTree = "<group>"; };
 		C9D440EB2CE966ED0066E439 /* WrapOpenAIAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrapOpenAIAPI.swift; sourceTree = "<group>"; };
 		C9D440EC2CE966ED0066E439 /* UnwrapOpenAIAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnwrapOpenAIAPI.swift; sourceTree = "<group>"; };
@@ -125,7 +123,7 @@
 		C9D440F32CE966ED0066E439 /* SchemaHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchemaHandler.swift; sourceTree = "<group>"; };
 		C9D440F42CE966ED0066E439 /* ExtractionAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtractionAPI.swift; sourceTree = "<group>"; };
 		C9D440F52CE966ED0066E439 /* APIHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
-		C9D441152CE970700066E439 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		C9D441152CE970700066E439 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C9D441172CE97E450066E439 /* chipotle_cleaned_ocr_output.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = chipotle_cleaned_ocr_output.txt; sourceTree = "<group>"; };
 		DA24010A2CE1A29E0097E0FE /* ScanDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDocumentView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -159,6 +157,7 @@
 		1D9C3C8B2C876B4E0047E5CE = {
 			isa = PBXGroup;
 			children = (
+				C9D441152CE970700066E439 /* README.md */,
 				1D9C3C962C876B4F0047E5CE /* Receipt Gobbler */,
 				1D9C3CA72C876B540047E5CE /* Receipt GobblerTests */,
 				1D9C3CB12C876B540047E5CE /* Receipt GobblerUITests */,
@@ -192,7 +191,6 @@
 				DA24010A2CE1A29E0097E0FE /* ScanDocumentView.swift */,
 				1D9C3CC72C8775B30047E5CE /* ReceiptStore.swift */,
 				1D9C3CC92C8775F20047E5CE /* PreviousReceiptsView.swift */,
-				C9D441152CE970700066E439 /* README.txt */,
 			);
 			path = "Receipt Gobbler";
 			sourceTree = "<group>";
@@ -251,7 +249,6 @@
 				C9D440DA2CE966ED0066E439 /* Schemas */,
 				C9D440E12CE966ED0066E439 /* .gitignore */,
 				C9D440E22CE966ED0066E439 /* Configs */,
-				C9D440E72CE966ED0066E439 /* .gitattributes */,
 				C9D440E82CE966ED0066E439 /* Sources */,
 			);
 			path = AI_API;
@@ -457,7 +454,6 @@
 				C93C3A832CE9889300BD1708 /* chipotle_ai_extraction.json in Resources */,
 				C9D440FB2CE966ED0066E439 /* notes.txt in Resources */,
 				C9D441182CE97E450066E439 /* chipotle_cleaned_ocr_output.txt in Resources */,
-				C9D441052CE966ED0066E439 /* .gitattributes in Resources */,
 				C9D440F82CE966ED0066E439 /* r1.txt in Resources */,
 				C9D440F72CE966ED0066E439 /* r2.txt in Resources */,
 				C9D441042CE966ED0066E439 /* APIs.json in Resources */,
