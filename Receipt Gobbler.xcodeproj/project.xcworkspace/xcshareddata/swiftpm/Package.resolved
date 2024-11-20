@@ -1,5 +1,4 @@
 {
-  "originHash" : "92c0230fb0adc404299bb05aba6c51a76f86c388fdfb9f4e9bed3a757f80fc07",
   "pins" : [
     {
       "identity" : "anycodable",
@@ -11,5 +10,5 @@
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }
