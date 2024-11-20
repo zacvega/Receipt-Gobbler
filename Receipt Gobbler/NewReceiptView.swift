@@ -62,12 +62,12 @@ struct NewReceiptView: View {
 //                        .cornerRadius(30)
 //                }
                 
-                Text("\(recognizedText)")
-                                .padding()
-                                .frame(width: 300)
-                                .background(Color.blue.opacity(0.1))
-                                .cornerRadius(8)
-                                .multilineTextAlignment(.center)
+//                Text("\(recognizedText)")
+//                                .padding()
+//                                .frame(width: 300)
+//                                .background(Color.blue.opacity(0.1))
+//                                .cornerRadius(8)
+//                                .multilineTextAlignment(.center)
                 
 
     //            // Type In Button

@@ -1,7 +1,68 @@
 import SwiftUI
 
 
+struct InputItemsGridView: View {
+    @Binding var items: [Item]
+    var body: some View {
+        Grid {
+            GridRow{
+                Text("Item Name")
+                Text("Unit Price")
+                Text("Quantity")
+                //                        Image(systemName: "globe")
+            }
+            .font(.headline)
+            
+            Divider()
+            
+            ForEach($items, id: \.id){ $item in
+                GridRow{
+                    TextField("Item Name", text: $item.name)
+                    //                                    .foregroundColor(isFocused ? .blue: .black)
+                    HStack(spacing: 2.0) {
+                        Text("$")
+                        TextField("Unit Price", value: $item.unitPrice, format: .number.precision(.fractionLength(2)))
+                    }
+                    TextField("Quantity", value: $item.quantity, format: .number)
+                }
+                
+            }
+        }
+    }
+}
 
+struct InputItemsListView: View {
+    @Binding var items: [Item]
+    var body: some View {
+        HStack {
+            Text("Item Name")
+            Spacer()
+            //Divider()
+            Text("Unit Price").frame(width: 9*10)
+            Spacer()
+            //Divider()
+            Text("Count").frame(width: 5*10)
+                
+        }
+        .font(.headline)
+        //.multilineTextAlignment(.center)
+        
+        List($items, id:\.id, editActions: .delete){ i in
+            HStack {
+                TextField("Item Name", text: i.name)
+                Divider()
+                Text("$")
+                    .padding(.trailing, -5.0)
+                    
+                TextField("Unit Price", value: i.unitPrice, format: .number.precision(.fractionLength(2)))
+                    .frame(width: 9*10)
+                Divider()
+                TextField("Count", value: i.quantity, format: .number.precision(.fractionLength(2)))
+                    .frame(width: 5*10)
+            }
+        }
+    }
+}
 
 struct ReceiptFormView: View {
 //    @State private var storeName: String = ""
@@ -30,37 +91,9 @@ struct ReceiptFormView: View {
     }
     
     
-    //@State private var items: String = ""
-    @State var items = [
-        Item(),
-        Item(name: "Potato Chips", unitPrice: 3.50, quantity: 1),
-        Item(name: "Pen", unitPrice: 2.50, quantity: 2),
-        Item(name: "Notebook", unitPrice: 5.50, quantity: 1),
-        Item(name: "Apple", unitPrice: 1.50, quantity: 1.35),
-        Item(),
-        Item(name: "Potato Chips", unitPrice: 3.50, quantity: 1),
-        Item(name: "Pen", unitPrice: 2.50, quantity: 2),
-        Item(name: "Notebook", unitPrice: 5.50, quantity: 1),
-        Item(name: "Apple", unitPrice: 1.50, quantity: 1.35),
-        Item(),
-        Item(name: "Potato Chips", unitPrice: 3.50, quantity: 1),
-        Item(name: "Pen", unitPrice: 2.50, quantity: 2),
-        Item(name: "Notebook", unitPrice: 5.50, quantity: 1),
-        Item(name: "Apple", unitPrice: 1.50, quantity: 1.35),
-        Item(),
-        Item(name: "Potato Chips", unitPrice: 3.50, quantity: 1),
-        Item(name: "Pen", unitPrice: 2.50, quantity: 2),
-        Item(name: "Notebook", unitPrice: 5.50, quantity: 1),
-        Item(name: "Apple", unitPrice: 1.50, quantity: 1.35),
-        Item(),
-        Item(name: "Potato Chips", unitPrice: 3.50, quantity: 1),
-        Item(name: "Pen", unitPrice: 2.50, quantity: 2),
-        Item(name: "Notebook", unitPrice: 5.50, quantity: 1),
-        Item(name: "Apple", unitPrice: 1.50, quantity: 1.35)
-    ]
-    @State private var totalCostIncludingTax: Double = 123.4567
-    @State private var tax: Double = 0.0
-    @State private var receiptDate: Date = Date() // Use for the date input
+//    @State private var totalCostIncludingTax: Double = 123.4567
+//    @State private var tax: Double = 0.0
+//    @State private var receiptDate: Date = Date() // Use for the date input
     @Environment(\.presentationMode) var presentationMode
     
 //    @FocusState private var isFocused: Bool
@@ -70,7 +103,12 @@ struct ReceiptFormView: View {
         VStack(){
             Form {
                 Section(header: Text("Receipt Summary")){
-                    TextField("Merchant Name", text: combinedMerchantNameBinding)
+                    HStack {
+                        Text("Merchant:")
+                            .font(.headline)
+                        TextField("Merchant Name", text: combinedMerchantNameBinding)
+                    }
+
                     
                     HStack(spacing: 1.0) {
                         Text("Total\n(with tax): ")
@@ -117,56 +155,17 @@ struct ReceiptFormView: View {
                 
                 Section(header: Text("Items")){
                     //consider using a fixed-width view to make faster
-                    Grid{
-                        GridRow{
-                            Text("Item Name")
-                            Text("Unit Price")
-                            Text("Quantity")
-                            //                        Image(systemName: "globe")
-                            
-                        }
-                        .font(.headline)
-                        
-                        Divider()
-
-                        ForEach($newReceiptInfo.details.items, id: \.id){ $item in
-                            GridRow{
-                                TextField("Item Name", text: $item.name)
-//                                    .foregroundColor(isFocused ? .blue: .black)
-                                HStack(spacing: 2.0) {
-                                    Text("$")
-                                    TextField("Unit Price", value: $item.unitPrice, format: .number.precision(.fractionLength(2)))
-                                }
-                                TextField("Quantity", value: $item.quantity, format: .number)
-                            }
-                            
-                        }
-                        
-                    }
+                    //InputItemsGridView(items: $newReceiptInfo.details.items)
+                    InputItemsListView(items: $newReceiptInfo.details.items)
                     
+                    Button(action: {
+                        newReceiptInfo.details.items.append(Item(name:"POP!"))
+                    }
+                    ) {
+                        Label("Add item", systemImage: "plus.circle")
+                    }
                 }
-//                Section(header: Text("Tax")){
-//                    TextField("Tax", value: $tax, format: .number.precision(.fractionLength(2)))
-//                }
                 
-                
-                //            Section(header: Text("Items")) {
-                //                TextField("Items (comma-separated)", text: $items)
-                //            }
-                //
-                //            Section(header: Text("Price")) {
-                //                TextField("Total Price", text: $price)
-                //                    .keyboardType(.decimalPad)
-                //            }
-                //
-                //            // Date Picker for receipt date input
-                //            Section(header: Text("Date of Purchase")) {
-                //
-                ////                    .datePickerStyle(GraphicalDatePickerStyle()) // Use a graphical style for better UX
-                //            }
-                
-                
-                //.padding(.top, 20)
             }
             
             

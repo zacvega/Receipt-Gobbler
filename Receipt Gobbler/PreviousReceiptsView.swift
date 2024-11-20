@@ -49,18 +49,24 @@ struct ReciptSummaryListView: View {
 
 //    @State var fullInfos = ReceiptStore.shared.fakeData.fullInfo
     @Binding var receiptsDict: Dictionary<UUID,ReceiptInfo>
+    @Binding var receiptsArray: [ReceiptInfo]
     
 
     var body: some View{
         NavigationStack{
-            List{
-                ForEach(Array(receiptsDict.values)) { i in
-                    NavigationLink(destination: ReceiptDetailsView(fullInfo: i)){
+            List {
+                ForEach($receiptsArray, id:\.id) { $i in
+                    NavigationLink(destination: ReceiptDetailsView(fullInfo: $i)){
                         ReceiptSummaryRowView(summary: i.summary)
                     }
                 }
+                .onDelete { indexSet in
+                    receiptsArray.remove(atOffsets: indexSet)
+                }
             }
             .navigationTitle("Past Receipts")
+            //.navigationBarTitleDisplayMode(.inline)
+
         }
     }
     
@@ -91,7 +97,7 @@ struct PreviousReceiptsView: View {
     var body: some View {
         VStack{
             //Text("Past Receipts").font(.title)
-            ReciptSummaryListView(receiptsDict: $dataModel.receiptsDict)
+            ReciptSummaryListView(receiptsDict: $dataModel.receiptsDict, receiptsArray: $dataModel.receiptsIdentifiableArray)
         }
     }
 
@@ -105,16 +111,19 @@ struct PreviousReceiptsView: View {
 }
 
 struct ReceiptDetailsView: View {
-    var fullInfo: ReceiptInfo
+    @Environment(\.editMode) private var editMode
+
+    @Binding var fullInfo: ReceiptInfo
     var body: some View{
         //ScrollView{
             VStack(){
+                //Label("Fuck")
                 Text(fullInfo.details.merchant.name).font(.title)
                 Text(fullInfo.details.merchant.address).font(.title3).foregroundColor(.secondary).multilineTextAlignment(.center)
-                Text(fullInfo.details.merchant.phone).font(.title3).foregroundColor(.secondary).frame(height: 10.0)
-                Text(fullInfo.summary.time_purchased.formatted(date:.abbreviated, time: .omitted)).font(.title2)
+                Text(fullInfo.details.merchant.phone).font(.title3).foregroundColor(.secondary)//.frame(height: 10.0)
+                Text(fullInfo.summary.time_purchased.formatted(date:.abbreviated, time: .omitted)).font(.title3).padding(.top, 1.0)
                 Divider()
-                    .padding(.bottom, 30.0)
+                    .padding(.bottom, 20.0)
                 //
                 //            Spacer()
                 //                .frame(height: 100)
@@ -163,11 +172,29 @@ struct ReceiptDetailsView: View {
                 Spacer()
                 
             }
+            .toolbar{
+                Button(action: {
+                    self.editMode?.wrappedValue.toggle()
+                }) {
+                      Label("Edit", systemImage: self.editMode?.wrappedValue == .active ? "checkmark.square" : "square.and.pencil" )
+//                        .foregroundColor(.white)
+//                        .background(Color.blue)
+//                        .cornerRadius(10)
+                    Text(self.editMode?.wrappedValue == .active ? "Done" : "Edit")
+                        .padding(.leading, -20.0)
+                        .frame(width: 45.0)
+                    }
+            }
             .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
         //}
     }
     
-    
+}
+
+extension EditMode {
+    mutating func toggle(){
+        self = self == .active ? .inactive : .active
+    }
 }
 
 

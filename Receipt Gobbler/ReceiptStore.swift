@@ -62,9 +62,11 @@ class ReceiptStore: ObservableObject {
     @Published var fakeData = syntheticData()
     
     @Published var receiptsDict: [UUID: ReceiptInfo] = Dictionary(uniqueKeysWithValues: syntheticData.fullInfo.map{($0.id, $0)})
+    @Published var receiptsIdentifiableArray: [ReceiptInfo] = syntheticData.fullInfo
     
     func createReceiptNew(newReceiptInfo: ReceiptInfo){
         receiptsDict[newReceiptInfo.id] = newReceiptInfo
+        receiptsIdentifiableArray.append(newReceiptInfo)
     }
     
     func readReceipt(id: UUID) -> ReceiptInfo{
@@ -74,12 +76,17 @@ class ReceiptStore: ObservableObject {
 
     func updateReceipt(newReceiptInfo: ReceiptInfo){
         receiptsDict[newReceiptInfo.id] = newReceiptInfo
-        
+        //receiptsIdentifiableArray[newReceiptInfo.id] = newReceiptInfo
     }
     
     func deleteReceipt(id: UUID){
         //maybe explore remove()
         receiptsDict[id] = nil
+        //receiptsIdentifiableArray.remove(
+    }
+    
+    func deleteMultipleReceipts(indexSet: IndexSet){
+        receiptsIdentifiableArray.remove(atOffsets: indexSet)
     }
     
     
@@ -174,7 +181,7 @@ struct syntheticData{
             details: ReceiptDetail(
                 merchant: Merchant(name: "Walmart", address: "111 S Providence Rd, Columbia, MO 65203", phone: "573-555-1357"),
                 items: [
-                    Item(name: "Bananas", unitPrice: 0.58, quantity: 6),
+                    Item(name: "Bananananananana", unitPrice: 0.58, quantity: 6),
                     Item(name: "Chicken Breast", unitPrice: 8.99, quantity: 1),
                     Item(name: "Broccoli", unitPrice: 2.49, quantity: 1),
                     Item(name: "Shampoo", unitPrice: 5.99, quantity: 2),
@@ -205,6 +212,9 @@ struct syntheticData{
             )
         )
     ]
+    
+    
+    
 
     var summaries : [ReceiptSummary] = [
         // Existing summary for Plaza 900
