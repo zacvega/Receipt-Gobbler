@@ -1,4 +1,5 @@
 import SwiftUI
+import Charts
 
 struct HomeView: View {
     @State private var searchText: String = ""
@@ -41,7 +42,7 @@ struct HomeView: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                         }
-    
+                        
                         // Previous Receipt Button
                         Button(action: {
                             selectedTab = "past_receipts"
@@ -53,9 +54,17 @@ struct HomeView: View {
                                 .background(Color.green)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
-                        }
+                        }.padding(.top, 20)
+                        
+                        Chart(dataModel.storesVisited){ visit in
+                            BarMark(
+                                x: .value("Store", visit.StoreName),  // X-axis: Store name
+                                y: .value("Visit Count", visit.visitCount)  // Y-axis: Number of visits
+                            )
+                        }.padding(.top, 20)
                     }
                     .frame(width: geometry.size.width, height: geometry.size.height) // Ensuring buttons align properly
+                    
                 }
                 .padding(.top, 20)
 
