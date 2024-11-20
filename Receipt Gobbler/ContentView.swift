@@ -60,9 +60,8 @@ struct SearchBar: UIViewRepresentable {
 }
 
 struct ContentView_Previews: PreviewProvider {
+    @StateObject static var dataModel: ReceiptStore = ReceiptStore()
     static var previews: some View {
-        @StateObject var dataModel: ReceiptStore = ReceiptStore()
-        
         ContentView()
             .environmentObject(dataModel)
     }

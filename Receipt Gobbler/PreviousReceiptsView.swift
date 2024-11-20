@@ -175,9 +175,8 @@ struct ReceiptDetailsView: View {
 
 
 struct pastReceipts_preview: PreviewProvider{
+    @StateObject static var dataModel: ReceiptStore = ReceiptStore()
     static var previews: some View{
-        @StateObject var dataModel: ReceiptStore = ReceiptStore()
-        
         PreviousReceiptsView()
             .environmentObject(dataModel)
     }

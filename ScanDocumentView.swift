@@ -97,6 +97,7 @@ struct StructuredNoAliasResponse: Codable {
     let subtotal: Float
     let companyAddress: String
     let companyName: String
+    let companyPhone: String
     let time: String
     let total: Float
     let items: [SNARItem]
@@ -126,9 +127,9 @@ func handleAPIResponse(_ response: String) -> ReceiptInfo? {
         merchant_name: r.companyName,
         total_cost_including_tax: Double(r.total),
         tax: Double(r.tax),
-        time_purchased: Date()
+        time_purchased: Date(dateString: r.date) ?? Date(dateString: "1911-11-11")!
     ), details: ReceiptDetail(
-        merchant: Merchant(name: r.companyName, address: r.companyAddress, phone: ""),
+        merchant: Merchant(name: r.companyName, address: r.companyAddress, phone: r.companyPhone),
         items: items)
     )
 }

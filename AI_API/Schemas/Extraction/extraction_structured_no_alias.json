@@ -7,11 +7,15 @@
         "properties": {
           "companyName": {
             "type": "string",
-            "description": "The name of the company."
+            "description": "The name of the merchant."
           },
           "companyAddress": {
             "type": "string",
-            "description": "The address of the company."
+            "description": "The address of the merchant."
+          },
+          "companyPhone": {
+              "type": "string",
+              "description": "The phone number of the merchant (###-###-####)."
           },
           "date": {
             "type": "string",
@@ -57,7 +61,7 @@
             }
           }
         },
-        "required": ["companyName", "companyAddress", "date", "subtotal", "total", "items", "tax", "time"],
+        "required": ["companyName", "companyAddress", "companyPhone", "date", "subtotal", "total", "items", "tax", "time"],
         "additionalProperties": false
       },
       "strict": true

@@ -1,11 +1,4 @@
 import Foundation
-//struct Receipt: Identifiable {
-//    let id = UUID() // Unique identifier for each receipt
-//    let storeName: String
-//    let items: [String]
-//    let price: Double
-//    let date: Date // Changed from time to date
-//}
 
 //------ added by David -----
 struct ReceiptInfo: Identifiable {
@@ -66,10 +59,7 @@ extension Date {
 
 
 class ReceiptStore: ObservableObject {
-//    @Published var receipts: [Receipt] = []
     @Published var fakeData = syntheticData()
-
-    //static let shared = ReceiptStore()
     
     @Published var receiptsDict: [UUID: ReceiptInfo] = Dictionary(uniqueKeysWithValues: syntheticData.fullInfo.map{($0.id, $0)})
     
@@ -91,14 +81,6 @@ class ReceiptStore: ObservableObject {
         //maybe explore remove()
         receiptsDict[id] = nil
     }
-    
-    
-    
-    // Method to add a new receipt
-//    func addReceipt(storeName: String, items: [String], price: Double, date: Date) {
-//        let newReceipt = Receipt(storeName: storeName, items: items, price: price, date: date)
-//        receipts.append(newReceipt)
-//    }
     
     
     // Computed property to get the total spend for the current month
