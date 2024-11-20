@@ -97,6 +97,28 @@ class ReceiptStore: ObservableObject {
             total + receipt.summary.total_cost_including_tax
         }
     }
+    
+    struct StoreVisit: Identifiable {
+        let id = UUID()
+        let StoreName: String
+        let visitCount: Int
+    }
+    
+    var storesVisited: [StoreVisit] {
+        var visitCounts: [String: Int] = [:]
+
+        // Count the visits for each merchant
+        for receipt in receiptsDict.values {
+            let merchantName = receipt.summary.merchant_name
+            visitCounts[merchantName, default: 0] += 1
+        }
+
+        // Convert the dictionary to an array of StoreVisit
+        return visitCounts.map { StoreVisit(StoreName: $0.key, visitCount: $0.value) }
+    }
+    
+    
+    
 }
 
 
