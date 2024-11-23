@@ -680,7 +680,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Receipt Gobbler/Preview Content\"";
-				DEVELOPMENT_TEAM = R2AA9XD9LD;
+				DEVELOPMENT_TEAM = 4U3FQ7VN9S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Receipt-Gobbler-Info.plist";
@@ -696,7 +696,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.missouri.Receipt-Gobbler-Zac";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.missouri.Receipt-Gobbler-Matt";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -712,7 +712,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Receipt Gobbler/Preview Content\"";
-				DEVELOPMENT_TEAM = R2AA9XD9LD;
+				DEVELOPMENT_TEAM = 4U3FQ7VN9S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Receipt-Gobbler-Info.plist";
@@ -728,7 +728,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.missouri.Receipt-Gobbler-Zac";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.missouri.Receipt-Gobbler-Matt";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

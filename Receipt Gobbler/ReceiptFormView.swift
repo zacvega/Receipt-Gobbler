@@ -1,6 +1,7 @@
 import SwiftUI
 
 
+
 struct InputItemsGridView: View {
     @Binding var items: [Item]
     var body: some View {
@@ -206,9 +207,15 @@ struct ReceiptFormView: View {
     private func saveReceipt() {
         dataModel.createReceiptNew(newReceiptInfo: newReceiptInfo)
         
+        // Go back to the previous screen
+        presentationMode.wrappedValue.dismiss()
+        
         // replace newReceiptInfo with a fresh object for later use (since NewReceiptView owns it and that view is never destroyed)
         newReceiptInfo = ReceiptInfo()
         
+
+        
+
         //ReceiptStore.receiptsDict[newReceiptInfo.id] =  newReceiptInfo
 //        guard let price = Double(price) else {
 //            print("Invalid price")
@@ -220,8 +227,7 @@ struct ReceiptFormView: View {
         // Save receipt with the selected date
 //        ReceiptStore.shared.addReceipt(storeName: storeName, items: itemsArray, price: price, date: receiptDate)
         
-        // Go back to the previous screen
-        presentationMode.wrappedValue.dismiss()
+
     }
 }
 

@@ -1,8 +1,52 @@
 import Foundation
 
+func clearAppData() {
+    let appDataDirFP: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    let jsonFP: URL = appDataDirFP.appending(path: "data.json")
+    
+    do { try FileManager.default.removeItem(at: jsonFP) } catch { DLOG("[!] clear data failed"); return }
+    DLOG("cleared app data")
+}
+
+func dumpMemoryToJson(_ receiptInfoList: [ReceiptInfo]) throws {
+    let encoder = JSONEncoder()
+    let appDataDirFP: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    let jsonFP: URL = appDataDirFP.appending(path: "data.json")
+    
+    let jsonData = try encoder.encode(receiptInfoList)
+    try jsonData.write(to: jsonFP)
+}
+
+// will create file if it doesn't exist!
+// throws only when a critical error occurs
+func loadJsonToMemory() throws -> [ReceiptInfo] {
+    DLOG("loading json file")
+    let decoder = JSONDecoder()
+    let appDataDirFP: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    let jsonFP: URL = appDataDirFP.appending(path: "data.json")
+    
+    // this doesn't cause a race condition because we assume only one instance of the app is running at any time
+    let fileExists = FileManager.default.fileExists(atPath: jsonFP.path)
+    
+    // create a blank file and return
+    if !fileExists {
+        DLOG("creating new json file")
+        let encoder = JSONEncoder()
+        let receiptInfoList: [ReceiptInfo] = []
+        let jsonData = try encoder.encode(receiptInfoList)
+        try jsonData.write(to: jsonFP)
+        return receiptInfoList
+    }
+    
+    let jsonData = try Data(contentsOf: jsonFP)
+    let receiptInfoList = try decoder.decode([ReceiptInfo].self, from: jsonData)
+    DLOG("got receiptInfo from disk: \(String(data: jsonData, encoding: .utf8)!)")
+    return receiptInfoList
+}
+
 //------ added by David -----
-struct ReceiptInfo: Identifiable {
-    let id = UUID()
+struct ReceiptInfo: Identifiable, Codable {
+    var id = UUID() // must be `var` for Codable to work properly even though it doesn't change once set
     var summary: ReceiptSummary
     var details: ReceiptDetail
 }
@@ -14,8 +58,8 @@ extension ReceiptInfo {
     }
 }
 
-struct ReceiptSummary: Identifiable {
-    let id = UUID()
+struct ReceiptSummary: Identifiable, Codable {
+    var id = UUID()
 //    let merchant_id: Int
     var merchant_name: String = ""
 //    let merchant: Merchant
@@ -24,24 +68,24 @@ struct ReceiptSummary: Identifiable {
     var time_purchased: Date = Date()
 }
 
-struct ReceiptDetail {
+struct ReceiptDetail: Codable {
     var merchant: Merchant
     var items: [Item]
 }
 
-struct Merchant{
+struct Merchant: Codable {
     var name: String = ""
     var address: String = ""
     var phone: String = ""
 }
 
-struct Item: Identifiable {
-    let id = UUID()
+struct Item: Identifiable, Codable {
+    var id = UUID()
     var name: String = ""
+    
     var unitPrice: Float = 0.0
     var quantity: Float = 0.0
 }
-
 
 extension Date {
     init?(dateString: String) {
@@ -61,12 +105,27 @@ extension Date {
 class ReceiptStore: ObservableObject {
     @Published var fakeData = syntheticData()
     
-    @Published var receiptsDict: [UUID: ReceiptInfo] = Dictionary(uniqueKeysWithValues: syntheticData.fullInfo.map{($0.id, $0)})
-    @Published var receiptsIdentifiableArray: [ReceiptInfo] = syntheticData.fullInfo
+    /// DO NOT MUTATE THIS, use createReceiptNew(), updateReceipt(), etc.
+    /// initialzed in `Receipt_GobblerApp.swift:loadReceiptStore`
+    @Published var receiptsDict: [UUID: ReceiptInfo] = [:]
+    
+    /// Call this every time the receipts are created, updated, or deleted
+    func onModelUpdated(commitChanges: Bool = true) {
+        // dump receipts to json
+        // could maybe do this asyncronously (but be aware of race conditions)
+        if !USE_FAKE_RECEIPT_DATA && commitChanges {
+            do {
+                try dumpMemoryToJson(Array(receiptsDict.values))
+                DLOG("saved data to file")
+            } catch {
+                DLOG("[!] failed to write data to file")
+            }
+        }
+    }
     
     func createReceiptNew(newReceiptInfo: ReceiptInfo){
         receiptsDict[newReceiptInfo.id] = newReceiptInfo
-        receiptsIdentifiableArray.append(newReceiptInfo)
+        onModelUpdated()
     }
     
     func readReceipt(id: UUID) -> ReceiptInfo{
@@ -74,19 +133,25 @@ class ReceiptStore: ObservableObject {
         return receiptsDict[id]!
     }
 
-    func updateReceipt(newReceiptInfo: ReceiptInfo){
+    /// If you provide `commitChanges: false` you must manually call onModelUpdated() at some later
+    /// point to commit the changes.
+    func updateReceipt(newReceiptInfo: ReceiptInfo, commitChanges: Bool = true) {
         receiptsDict[newReceiptInfo.id] = newReceiptInfo
-        //receiptsIdentifiableArray[newReceiptInfo.id] = newReceiptInfo
+        onModelUpdated(commitChanges: commitChanges)
     }
     
     func deleteReceipt(id: UUID){
         //maybe explore remove()
         receiptsDict[id] = nil
-        //receiptsIdentifiableArray.remove(
+        onModelUpdated()
     }
     
-    func deleteMultipleReceipts(indexSet: IndexSet){
-        receiptsIdentifiableArray.remove(atOffsets: indexSet)
+    func deleteMultipleReceipts(ids: [UUID]) {
+        // dictionary doesn't have a method to delete/set multiple at once AFAIK
+        for id in ids {
+            receiptsDict[id] = nil
+        }
+        onModelUpdated()
     }
     
     

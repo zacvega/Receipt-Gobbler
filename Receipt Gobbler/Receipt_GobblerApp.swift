@@ -17,6 +17,11 @@ import SwiftUI
 let USE_MOCK_API_RESPONSE = true
 // extra logging to Xcode output panel
 let DEBUG_LOGGING = true
+// if true, synthetic in-memory data is used
+// if false, receipts are peristed to the disk and synthetic data isn't used
+let USE_FAKE_RECEIPT_DATA = false
+// if true, the app's data will be purged upon the next app launch
+let CLEAR_APP_DATA = false
 
 
 // calls into the API in the background and eventually prints the result out to the Xcode output
@@ -45,16 +50,52 @@ func DLOG(_ params: Any...) {
     }
 }
 
+enum FatalError: Error {
+    case unexpected
+}
+
+func loadReceiptStore() throws -> ReceiptStore {
+    if CLEAR_APP_DATA {
+        clearAppData()
+    }
+    
+    let rs = ReceiptStore()
+    
+    if USE_FAKE_RECEIPT_DATA {
+        DLOG("using fake data")
+        rs.receiptsDict = Dictionary(uniqueKeysWithValues: syntheticData.fullInfo.map{($0.id, $0)})
+        rs.onModelUpdated()
+        return rs
+    }
+    
+    let receiptInfoList = try? loadJsonToMemory()
+    if receiptInfoList == nil {
+        DLOG("tried to load real data but got none")
+        // this always should succeed, returning blank data here might overwrite real data; must throw
+        throw FatalError.unexpected
+    }
+    
+    let realData = Dictionary(uniqueKeysWithValues: receiptInfoList!.map{($0.id, $0)})
+    rs.receiptsDict = realData
+    rs.onModelUpdated(commitChanges: false) // updating the json would be pointless since it hasn't changed yet
+    
+    return rs
+}
+
 @main
 struct Receipt_GobblerApp: App {
     //var mainPageView = ContentView()
-    @StateObject var dataModel: ReceiptStore = ReceiptStore()
+    @StateObject var dataModel: ReceiptStore = {
+        do {
+            return try loadReceiptStore()
+        } catch {
+            fatalError("loading receipt store failed")
+        }
+    }()
     
     init() {
         
-        
 //        Task { await apiDemo() } // launch real api demo in background
-        
         
     }
     

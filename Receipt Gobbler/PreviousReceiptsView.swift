@@ -34,6 +34,22 @@ struct ReceiptSummaryRowView: View{
     
 }
 
+/// Generaates Bindings that will automatically update the ReceiptStore any time receipts are mutated.
+func receiptsDictToBindings(_ receiptStore: ReceiptStore) -> [Binding<ReceiptInfo>] {
+    var bindings: [Binding<ReceiptInfo>] = []
+    for receipt in receiptStore.receiptsDict.values {
+        bindings.append(.init(get: {
+            return receipt
+        }, set: { receipt in
+//            DLOG("mutated receipts via binding")
+            // this will also commit changes to disk, so try not to mutate the receipts
+            // directly too often
+            receiptStore.updateReceipt(newReceiptInfo: receipt, commitChanges: true)
+        }))
+    }
+    return bindings
+}
+
 struct ReciptSummaryListView: View {
     //    var myCalendar = Calendar(identifier: .gregorian)
         //    myCalendar.date(from: DateComponents(year: 2024, month: 1, day: 1))
@@ -41,36 +57,37 @@ struct ReciptSummaryListView: View {
     //    myFormatter.locale = Locale(identifier: "en_US_POSIX")
     //    myFormatter.dateFormat = "yyyy/MM/dd"
     //    var d = myFormatter.date(from: "2016/10/08")
+
+    @ObservedObject var receiptStore: ReceiptStore // passed in
     
-    //some synthetic data
-//    @State var summaries = ReceiptStore.shared.fakeData.summaries
-
-    //var details: ReceiptDetail
-
-//    @State var fullInfos = ReceiptStore.shared.fakeData.fullInfo
-    @Binding var receiptsDict: Dictionary<UUID,ReceiptInfo>
-    @Binding var receiptsArray: [ReceiptInfo]
-    
-
-    var body: some View{
-        NavigationStack{
+    var body: some View {
+        let receipts = receiptsDictToBindings(receiptStore)
+        
+        return NavigationStack{
             List {
-                ForEach($receiptsArray, id:\.id) { $i in
-                    NavigationLink(destination: ReceiptDetailsView(fullInfo: $i)){
-                        ReceiptSummaryRowView(summary: i.summary)
+                // the receipt bindings passed in here are mutable, but you shouldn't mutate them too often
+                // because they trigger immediate to-disk commits (use temporary variables for textboxes and
+                // such if necessary and only mutate when changes are confirmed)
+                ForEach(receipts, id:\.id) { i in
+                    NavigationLink(destination: ReceiptDetailsView(fullInfo: i)){
+                        ReceiptSummaryRowView(summary: i.wrappedValue.summary)
                     }
                 }
                 .onDelete { indexSet in
-                    receiptsArray.remove(atOffsets: indexSet)
+                    // convert indeces to UUIDs
+                    var receiptsToDelete: [UUID] = []
+                    for i in indexSet {
+                        receiptsToDelete.append(receipts[i].id)
+                    }
+                    
+                    // remove the receipts properly
+                    receiptStore.deleteMultipleReceipts(ids: receiptsToDelete)
                 }
             }
             .navigationTitle("Past Receipts")
             //.navigationBarTitleDisplayMode(.inline)
-
         }
     }
-    
-    
 }
 
 
@@ -97,7 +114,7 @@ struct PreviousReceiptsView: View {
     var body: some View {
         VStack{
             //Text("Past Receipts").font(.title)
-            ReciptSummaryListView(receiptsDict: $dataModel.receiptsDict, receiptsArray: $dataModel.receiptsIdentifiableArray)
+            ReciptSummaryListView(receiptStore: dataModel)
         }
     }
 
@@ -174,6 +191,7 @@ struct ReceiptDetailsView: View {
             }
             .toolbar{
                 Button(action: {
+//                    fullInfo.details.items[0].name = "TEST"
                     self.editMode?.wrappedValue.toggle()
                 }) {
                       Label("Edit", systemImage: self.editMode?.wrappedValue == .active ? "checkmark.square" : "square.and.pencil" )
