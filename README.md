@@ -2,7 +2,7 @@
 
 It works, though there are a few bugs. By default a cached response generated using the example Chiptole receipt is used instead of calling the real API. This behavior can be toggled by setting the `USE_MOCK_API_RESPONSE` at the top of `Receipt_GobblerApp.swift`.
 
-As of 2c18337 data is persistently stored by dumping it to a JSON file.
+As of 2c18337 data is persistently stored by dumping it to a JSON file, if the `USE_FAKE_RECEIPT_DATA` debug switch is off.
 
 ### Major TODOs, bugs to fix
 
