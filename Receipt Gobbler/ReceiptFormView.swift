@@ -73,7 +73,7 @@ struct ReceiptFormView: View {
     //@State private var merchantInfo: Merchant = Merchant()
     
     @Binding var newReceiptInfo: ReceiptInfo
-//    @Binding var parentPath: [String]
+    @Binding var parentPath: [String]
     
     // must reset this after saving (we do this in parent view now)
 //    @Binding var isLoading: Bool
@@ -210,7 +210,8 @@ struct ReceiptFormView: View {
         dataModel.createReceiptNew(newReceiptInfo: newReceiptInfo)
         
         // Go back to the previous screen
-        presentationMode.wrappedValue.dismiss()
+//        presentationMode.wrappedValue.dismiss()
+        parentPath.removeAll()
         
         // replace newReceiptInfo with a fresh object for later use (since NewReceiptView owns it and that view is never destroyed)
         newReceiptInfo = ReceiptInfo()
@@ -235,9 +236,10 @@ struct ReceiptFormView: View {
 
 struct ReceiptFormView_Previews: PreviewProvider {
 //    @State static var isLoading = true
+    @State static var parentPath: [String] = ["a", "b"]
     
     static var previews: some View {
         //NewReceiptView()
-        ReceiptFormView(newReceiptInfo: NewReceiptView().$newReceiptInfo)
+        ReceiptFormView(newReceiptInfo: NewReceiptView().$newReceiptInfo, parentPath: $parentPath)
     }
 }

@@ -93,11 +93,11 @@ struct NewReceiptView: View {
             .navigationTitle("New Receipt")
             .navigationDestination(for: String.self) { value in
                 if value == "receipt_form_1" {
-                    ReceiptFormView(newReceiptInfo: $newReceiptInfo)
+                    ReceiptFormView(newReceiptInfo: $newReceiptInfo, parentPath: $path)
                 }
                 else if value == "receipt_form_2" {
                     if !isLoading {
-                        ReceiptFormView(newReceiptInfo: $newReceiptInfo)
+                        ReceiptFormView(newReceiptInfo: $newReceiptInfo, parentPath: $path)
                     }
                     else {
                         LoadingView()
