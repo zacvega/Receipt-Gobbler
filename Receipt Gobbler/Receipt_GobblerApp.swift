@@ -19,7 +19,7 @@ let USE_MOCK_API_RESPONSE = true
 let DEBUG_LOGGING = true
 // if true, synthetic in-memory data is used
 // if false, receipts are peristed to the disk and synthetic data isn't used
-let USE_FAKE_RECEIPT_DATA = false
+let USE_FAKE_RECEIPT_DATA = true
 // if true, the app's data will be purged upon the next app launch
 let CLEAR_APP_DATA = false
 

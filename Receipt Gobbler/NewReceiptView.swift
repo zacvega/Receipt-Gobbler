@@ -10,6 +10,9 @@ struct NewReceiptView: View {
     
     @State private var path: [String] = []
     
+    @State var isLoading: Bool = true
+    @State private var _wasOnReceiptForm2: Bool = false
+    
 //    Use this instead when you're ready
 //    @State var newReceiptInfo: ReceiptInfo = ReceiptInfo()
     
@@ -20,7 +23,7 @@ struct NewReceiptView: View {
     var body: some View {
         NavigationStack(path: $path) {
             VStack(spacing: 30.0) {
-                NavigationLink(value: "receipt_form") {
+                NavigationLink(value: "receipt_form_1") {
                     Text("Type")
                         .font(.title)
                         .padding()
@@ -89,11 +92,31 @@ struct NewReceiptView: View {
             .padding()
             .navigationTitle("New Receipt")
             .navigationDestination(for: String.self) { value in
-                if value == "receipt_form" {
+                if value == "receipt_form_1" {
                     ReceiptFormView(newReceiptInfo: $newReceiptInfo)
                 }
+                else if value == "receipt_form_2" {
+                    if !isLoading {
+                        ReceiptFormView(newReceiptInfo: $newReceiptInfo)
+                    }
+                    else {
+                        LoadingView()
+                    }
+                }
                 else if value == "receipt_scan" {
-                    ScanDocumentView(recognizedText: $recognizedText, returnedNewReceiptInfo: $newReceiptInfo, parentPath: $path)
+                    ScanDocumentView(recognizedText: $recognizedText, returnedNewReceiptInfo: $newReceiptInfo, parentPath: $path, isLoading: $isLoading)
+                }
+            }
+            .onChange(of: path) { newPath in
+                // called whenever the current page updates
+                let newPage = newPath.last
+                if newPage == "receipt_form_2" {
+                    _wasOnReceiptForm2 = true
+                }
+                else if _wasOnReceiptForm2 {
+                    // just returned from receipt form, must cleanup
+                    _wasOnReceiptForm2 = false
+                    isLoading = true
                 }
             }
         }

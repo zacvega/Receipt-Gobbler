@@ -203,6 +203,7 @@ struct ScanDocumentView: UIViewControllerRepresentable {
     @Binding var returnedNewReceiptInfo: ReceiptInfo
     
     @Binding var parentPath: [String]
+    @Binding var isLoading: Bool
     
     func makeCoordinator() -> Coordinator {
         Coordinator(recognizedText: $recognizedText, parent: self)
@@ -235,6 +236,10 @@ struct ScanDocumentView: UIViewControllerRepresentable {
             DLOG(cleanedOcrOutput)
             //            recognizedText.wrappedValue = processedText
             
+            
+            // receipt form will initially just display a loading symbol
+            parent.parentPath.append("receipt_form_2")
+            
             Task {
                 let extractedData = await extractReceiptData(cleanedOcrOutput)
                 if let extractedData {
@@ -243,11 +248,14 @@ struct ScanDocumentView: UIViewControllerRepresentable {
                 else {
                     DLOG("FAILED TO EXTRACT")
                     parent.returnedNewReceiptInfo = ReceiptInfo()
-//                    parent.returnedNewReceiptInfo = syntheticData.testReceipt1
                 }
                 
-                parent.parentPath.append("receipt_form")
-                // parent.presentationMode.wrappedValue.dismiss()
+                // emulate waiting for API response to test LoadingView
+                if USE_MOCK_API_RESPONSE {
+                    try? await Task.sleep(for: .seconds(2))
+                }
+                
+                parent.isLoading = false
             }
 
             

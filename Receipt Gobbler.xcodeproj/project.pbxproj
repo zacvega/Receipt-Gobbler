@@ -19,6 +19,7 @@
 		1D9C3CC62C8771FF0047E5CE /* ReceiptFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3CC52C8771FF0047E5CE /* ReceiptFormView.swift */; };
 		1D9C3CC82C8775B30047E5CE /* ReceiptStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3CC72C8775B30047E5CE /* ReceiptStore.swift */; };
 		1D9C3CCA2C8775F20047E5CE /* PreviousReceiptsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C3CC92C8775F20047E5CE /* PreviousReceiptsView.swift */; };
+		C92973812CFBB25B007F386C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92973802CFBB25B007F386C /* LoadingView.swift */; };
 		C92BC6C72CE2D0E30063C35C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BC6C62CE2D0E30063C35C /* HomeView.swift */; };
 		C93C3A832CE9889300BD1708 /* chipotle_ai_extraction.json in Resources */ = {isa = PBXBuildFile; fileRef = C93C3A822CE9889300BD1708 /* chipotle_ai_extraction.json */; };
 		C93C3A8C2CEAEE6400BD1708 /* mcdonalds_cleaned_ocr_output.txt in Resources */ = {isa = PBXBuildFile; fileRef = C93C3A8B2CEAEE6400BD1708 /* mcdonalds_cleaned_ocr_output.txt */; };
@@ -88,6 +89,7 @@
 		1D9C3CC52C8771FF0047E5CE /* ReceiptFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptFormView.swift; sourceTree = "<group>"; };
 		1D9C3CC72C8775B30047E5CE /* ReceiptStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptStore.swift; sourceTree = "<group>"; };
 		1D9C3CC92C8775F20047E5CE /* PreviousReceiptsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousReceiptsView.swift; sourceTree = "<group>"; };
+		C92973802CFBB25B007F386C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		C92BC6C62CE2D0E30063C35C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C93C3A822CE9889300BD1708 /* chipotle_ai_extraction.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = chipotle_ai_extraction.json; sourceTree = "<group>"; };
 		C93C3A842CEAAF1E00BD1708 /* main.old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.old.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				DA24010A2CE1A29E0097E0FE /* ScanDocumentView.swift */,
 				1D9C3CC72C8775B30047E5CE /* ReceiptStore.swift */,
 				1D9C3CC92C8775F20047E5CE /* PreviousReceiptsView.swift */,
+				C92973802CFBB25B007F386C /* LoadingView.swift */,
 			);
 			path = "Receipt Gobbler";
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				C9D441112CE966ED0066E439 /* APIHandler.swift in Sources */,
 				C92BC6C72CE2D0E30063C35C /* HomeView.swift in Sources */,
 				DA24010B2CE1A29E0097E0FE /* ScanDocumentView.swift in Sources */,
+				C92973812CFBB25B007F386C /* LoadingView.swift in Sources */,
 				C9D4410B2CE966ED0066E439 /* RequestSender.swift in Sources */,
 				C9D441072CE966ED0066E439 /* WrapOpenAIAPI.swift in Sources */,
 				1D9C3CC42C876F170047E5CE /* NewReceiptView.swift in Sources */,

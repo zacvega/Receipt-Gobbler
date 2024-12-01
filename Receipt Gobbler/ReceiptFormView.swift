@@ -75,6 +75,8 @@ struct ReceiptFormView: View {
     @Binding var newReceiptInfo: ReceiptInfo
 //    @Binding var parentPath: [String]
     
+    // must reset this after saving (we do this in parent view now)
+//    @Binding var isLoading: Bool
 
     
     //used to update merchant name in both ReceiptSummary and ReceiptDetail instances
@@ -212,7 +214,7 @@ struct ReceiptFormView: View {
         
         // replace newReceiptInfo with a fresh object for later use (since NewReceiptView owns it and that view is never destroyed)
         newReceiptInfo = ReceiptInfo()
-        
+//        isLoading = true
 
         
 
@@ -232,6 +234,8 @@ struct ReceiptFormView: View {
 }
 
 struct ReceiptFormView_Previews: PreviewProvider {
+//    @State static var isLoading = true
+    
     static var previews: some View {
         //NewReceiptView()
         ReceiptFormView(newReceiptInfo: NewReceiptView().$newReceiptInfo)
