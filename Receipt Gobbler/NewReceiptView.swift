@@ -12,13 +12,6 @@ struct NewReceiptView: View {
     
     @State var isLoading: Bool = true
     @State private var _wasOnReceiptForm2: Bool = false
-    
-//    Use this instead when you're ready
-//    @State var newReceiptInfo: ReceiptInfo = ReceiptInfo()
-    
-    
-    //for navigation
-//    @State private var isButtonPressed: Bool = false
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -33,17 +26,6 @@ struct NewReceiptView: View {
                         .cornerRadius(30)
                 }
                 
-//                NavigationLink{ ReceiptFormView(newReceiptInfo: $newReceiptInfo)
-//                } label: {
-//                    Text("Type")
-//                        .font(.title)
-//                        .padding()
-//                        .frame(width: 200.0)
-//                        .background(.cyan)
-//                        .foregroundStyle(.white)
-//                        .cornerRadius(30)
-//                }
-                
                 NavigationLink(value: "receipt_scan") {
                     Text("Scan")
                         .font(.title)
@@ -53,41 +35,6 @@ struct NewReceiptView: View {
                         .foregroundStyle(.white)
                         .cornerRadius(30)
                 }
-                
-//                NavigationLink{ ScanDocumentView(recognizedText: $recognizedText, returnedNewReceiptInfo: $newReceiptInfo)
-//                } label: {
-//                    Text("Scan")
-//                        .font(.title)
-//                        .padding()
-//                        .frame(width: 200.0)
-//                        .background(.blue)
-//                        .foregroundStyle(.white)
-//                        .cornerRadius(30)
-//                }
-                
-//                Text("\(recognizedText)")
-//                                .padding()
-//                                .frame(width: 300)
-//                                .background(Color.blue.opacity(0.1))
-//                                .cornerRadius(8)
-//                                .multilineTextAlignment(.center)
-                
-
-    //            // Type In Button
-    //            NavigationLink(destination: ReceiptFormView()) {
-    //                Text("Type In")
-    //                    .font(.title)
-    //                    .padding()
-    //                    .background(Color.purple)
-    //                    .foregroundColor(.white)
-    //                    .cornerRadius(30)
-    //            }
-    //            .padding()
-
-                // Previous Receipts Button
-                
-
-                //Spacer()
             }
             .padding()
             .navigationTitle("New Receipt")

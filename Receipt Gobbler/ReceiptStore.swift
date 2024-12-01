@@ -44,7 +44,6 @@ func loadJsonToMemory() throws -> [ReceiptInfo] {
     return receiptInfoList
 }
 
-//------ added by David -----
 struct ReceiptInfo: Identifiable, Codable {
     var id = UUID() // must be `var` for Codable to work properly even though it doesn't change once set
     var summary: ReceiptSummary
@@ -98,7 +97,6 @@ extension Date {
         }
     }
 }
-//---^^^
 
 
 

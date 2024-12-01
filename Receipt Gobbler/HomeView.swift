@@ -3,7 +3,6 @@ import Charts
 
 struct HomeView: View {
     @State private var searchText: String = ""
-    //@ObservedObject var receiptStore = ReceiptStore.shared // Observing ReceiptStore for updates
     @EnvironmentObject var dataModel: ReceiptStore
     
     @Binding var selectedTab: String
@@ -11,8 +10,6 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             VStack {
-//                Title(text: "Home")
-                
                 // Display total spend for the current month
                 Text("Total Spend This Month")
                     .font(.headline)

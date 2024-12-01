@@ -1,7 +1,5 @@
 import SwiftUI
 
-
-
 struct InputItemsGridView: View {
     @Binding var items: [Item]
     var body: some View {
@@ -66,18 +64,8 @@ struct InputItemsListView: View {
 }
 
 struct ReceiptFormView: View {
-//    @State private var storeName: String = ""
-//    @State private var merchantAddress: String = ""
-//    @State private var merchantPhone: String = ""
-    
-    //@State private var merchantInfo: Merchant = Merchant()
-    
     @Binding var newReceiptInfo: ReceiptInfo
     @Binding var parentPath: [String]
-    
-    // must reset this after saving (we do this in parent view now)
-//    @Binding var isLoading: Bool
-
     
     //used to update merchant name in both ReceiptSummary and ReceiptDetail instances
     private var combinedMerchantNameBinding: Binding<String> {
@@ -93,15 +81,8 @@ struct ReceiptFormView: View {
         )
     }
     
-    
-//    @State private var totalCostIncludingTax: Double = 123.4567
-//    @State private var tax: Double = 0.0
-//    @State private var receiptDate: Date = Date() // Use for the date input
     @Environment(\.presentationMode) var presentationMode
     
-//    @FocusState private var isFocused: Bool
-    
-
     var body: some View {
         VStack(){
             Form {
@@ -135,30 +116,18 @@ struct ReceiptFormView: View {
                         TextField("Tax", value: $newReceiptInfo.summary.tax, format: .number.precision(.fractionLength(2)))
                         .keyboardType(.decimalPad)
                     }
-//                    HStack(spacing: 1.0) {
-//                        Text("Tax: ")
-//                            .font(.headline)
-//                        Text("$")
-//                        TextField("Tax", value: $tax, format: .number.precision(.fractionLength(2)))
-//                        .keyboardType(.decimalPad)
-//                    }
-                    
                     
                     
                     DatePicker("Date Purchased:", selection: $newReceiptInfo.summary.time_purchased, displayedComponents: .date).font(.headline)
                 }
                 
                 Section(header: Text("Merchant Info")) {
-                    //Text("Store Information")
-                    
                     TextField("Merchant Address", text: $newReceiptInfo.details.merchant.address)
                     TextField("Merchant Phone", text: $newReceiptInfo.details.merchant.phone)
                     
                 }
                 
                 Section(header: Text("Items")){
-                    //consider using a fixed-width view to make faster
-                    //InputItemsGridView(items: $newReceiptInfo.details.items)
                     InputItemsListView(items: $newReceiptInfo.details.items)
                     
                     Button(action: {
@@ -172,8 +141,6 @@ struct ReceiptFormView: View {
             }
             
             
-            //NavigationLink(destination: PreviousReceiptsView()) {
-            //The button works but Does Not Navigate
             //TODO: display signs of success if no error is thrown, then navigate to past receipts list, then to detail
                 Button(action: saveReceipt) {
                     Text("Save")
@@ -184,19 +151,6 @@ struct ReceiptFormView: View {
                         .foregroundColor(.white)
                         .cornerRadius(30)
                 }
-            //}
-                
-            
-//            Button(action: saveReceipt) {
-//                Text("Save")
-//                    .font(.title3)
-//                    //.frame(maxWidth: .infinity)
-//                    .fontWeight(.medium)
-//                    .padding()
-//                    .background(Color.blue)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(20)
-//            }
         }
         .navigationTitle("Input Form")
         .navigationBarTitleDisplayMode(.inline)
@@ -210,36 +164,17 @@ struct ReceiptFormView: View {
         dataModel.createReceiptNew(newReceiptInfo: newReceiptInfo)
         
         // Go back to the previous screen
-//        presentationMode.wrappedValue.dismiss()
         parentPath.removeAll()
         
         // replace newReceiptInfo with a fresh object for later use (since NewReceiptView owns it and that view is never destroyed)
         newReceiptInfo = ReceiptInfo()
-//        isLoading = true
-
-        
-
-        //ReceiptStore.receiptsDict[newReceiptInfo.id] =  newReceiptInfo
-//        guard let price = Double(price) else {
-//            print("Invalid price")
-//            return
-//        }
-
-//        let itemsArray = items.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
-
-        // Save receipt with the selected date
-//        ReceiptStore.shared.addReceipt(storeName: storeName, items: itemsArray, price: price, date: receiptDate)
-        
-
     }
 }
 
 struct ReceiptFormView_Previews: PreviewProvider {
-//    @State static var isLoading = true
     @State static var parentPath: [String] = ["a", "b"]
     
     static var previews: some View {
-        //NewReceiptView()
         ReceiptFormView(newReceiptInfo: NewReceiptView().$newReceiptInfo, parentPath: $parentPath)
     }
 }

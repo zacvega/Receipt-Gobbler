@@ -51,13 +51,6 @@ func receiptsDictToBindings(_ receiptStore: ReceiptStore) -> [Binding<ReceiptInf
 }
 
 struct ReciptSummaryListView: View {
-    //    var myCalendar = Calendar(identifier: .gregorian)
-        //    myCalendar.date(from: DateComponents(year: 2024, month: 1, day: 1))
-    //    var myFormatter: DateFormatter = DateFormatter()
-    //    myFormatter.locale = Locale(identifier: "en_US_POSIX")
-    //    myFormatter.dateFormat = "yyyy/MM/dd"
-    //    var d = myFormatter.date(from: "2016/10/08")
-
     @ObservedObject var receiptStore: ReceiptStore // passed in
     
     var body: some View {
@@ -85,46 +78,19 @@ struct ReciptSummaryListView: View {
                 }
             }
             .navigationTitle("Past Receipts")
-            //.navigationBarTitleDisplayMode(.inline)
         }
     }
 }
 
 
 struct PreviousReceiptsView: View {
-//    @ObservedObject var receiptStore = ReceiptStore.shared
     @EnvironmentObject var dataModel: ReceiptStore
-
-
-//    var body: some View {
-//        List {
-//            ForEach(receiptStore.receipts) { receipt in
-//                VStack(alignment: .leading) {
-//                    Text(receipt.storeName)
-//                        .font(.headline)
-//                    Text("Items: \(receipt.items.joined(separator: ", "))")
-//                    Text("Price: $\(receipt.price, specifier: "%.2f")")
-//                    Text("Date: \(receipt.date, formatter: dateFormatter)") // Display the date
-//                }
-//            }
-//        }
-//        .navigationTitle("Previous Receipts")
-//    }
     
     var body: some View {
         VStack{
-            //Text("Past Receipts").font(.title)
             ReciptSummaryListView(receiptStore: dataModel)
         }
     }
-
-    // Formatter to display the date in a readable format
-//    private var dateFormatter: DateFormatter {
-//        let formatter = DateFormatter()
-//        formatter.dateStyle = .medium  // Adjust the date format as needed (medium, long, short, etc.)
-//        formatter.timeStyle = .none  // No time component
-//        return formatter
-//    }
 }
 
 struct ReceiptDetailsView: View {
@@ -134,7 +100,6 @@ struct ReceiptDetailsView: View {
     var body: some View{
         //ScrollView{
             VStack(){
-                //Label("Fuck")
                 Text(fullInfo.details.merchant.name).font(.title)
                 Text(fullInfo.details.merchant.address).font(.title3).foregroundColor(.secondary).multilineTextAlignment(.center)
                 Text(fullInfo.details.merchant.phone).font(.title3).foregroundColor(.secondary)//.frame(height: 10.0)
@@ -191,7 +156,6 @@ struct ReceiptDetailsView: View {
             }
             .toolbar{
                 Button(action: {
-//                    fullInfo.details.items[0].name = "TEST"
                     self.editMode?.wrappedValue.toggle()
                 }) {
                       Label("Edit", systemImage: self.editMode?.wrappedValue == .active ? "checkmark.square" : "square.and.pencil" )

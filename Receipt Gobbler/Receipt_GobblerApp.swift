@@ -84,7 +84,6 @@ func loadReceiptStore() throws -> ReceiptStore {
 
 @main
 struct Receipt_GobblerApp: App {
-    //var mainPageView = ContentView()
     @StateObject var dataModel: ReceiptStore = {
         do {
             return try loadReceiptStore()
@@ -101,7 +100,6 @@ struct Receipt_GobblerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            //mainPageView
             ContentView()
                 .environmentObject(dataModel)
             

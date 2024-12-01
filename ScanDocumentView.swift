@@ -121,8 +121,6 @@ func handleAPIResponse(_ response: String) -> ReceiptInfo? {
         )
     }
     
-    // TODO: replace with actual date
-    // TODO: replace with actual phone number
     return ReceiptInfo(summary: ReceiptSummary(
         merchant_name: r.companyName,
         total_cost_including_tax: Double(r.total),
@@ -199,7 +197,6 @@ struct ScanDocumentView: UIViewControllerRepresentable {
     @Binding var recognizedText: String
     
     //Modify this to pass back recognized info
-    //Should navigate to a ReceiptFormView instance when done scanning, for user to edit
     @Binding var returnedNewReceiptInfo: ReceiptInfo
     
     @Binding var parentPath: [String]
@@ -232,10 +229,7 @@ struct ScanDocumentView: UIViewControllerRepresentable {
             let extractedImages = extractImages(from: scan)
             let ocrOutput = recognizeText(from: extractedImages)
             let cleanedOcrOutput = cleanupOcr(ocrOutput)
-//            print(cleanedOcrOutput)
             DLOG(cleanedOcrOutput)
-            //            recognizedText.wrappedValue = processedText
-            
             
             // receipt form will initially just display a loading symbol
             parent.parentPath.append("receipt_form_2")
@@ -300,9 +294,7 @@ struct ScanDocumentView: UIViewControllerRepresentable {
                             y2: boundingBox.bottomRight.y)
                         )
                     }
-                    
 //                    entireRecognizedText += "\(candidate.string)\n"
-                    
                 }
             }
             recognizeTextRequest.recognitionLevel = .accurate

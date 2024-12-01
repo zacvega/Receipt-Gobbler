@@ -8,15 +8,9 @@
 import SwiftUI
 
 struct LoadingView: View {
-//    @Environment(\.dismiss) private var dismiss
-    
-//    @Binding var isLoading: Bool
-    
     var body: some View {
         VStack {
-//            if isLoading {
-                ProgressView().progressViewStyle(CircularProgressViewStyle())
-//            }
+            ProgressView().progressViewStyle(CircularProgressViewStyle())
         }
     }
 }
@@ -27,8 +21,6 @@ struct LoadingView_Preview: PreviewProvider{
     @State static var isLoading: Bool = true
     
     static var previews: some View{
-//        LoadingView(isLoading: $isLoading)
         LoadingView()
-//            .environmentObject(dataModel)
     }
 }

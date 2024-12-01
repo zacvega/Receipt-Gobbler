@@ -2,11 +2,6 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selectedTab = "home"
-    
-//    var homeView = HomeView(selectedTab: $selectedTab)
-//    var mainPageView = self
-//    var newReceiptView = NewReceiptView()
-//    var pastReceiptsView = PreviousReceiptsView()
 
     var body: some View {
         
