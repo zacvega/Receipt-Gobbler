@@ -35,6 +35,15 @@ struct NewReceiptView: View {
                         .foregroundStyle(.white)
                         .cornerRadius(30)
                 }
+                NavigationLink(value: "receipt_import") {
+                    Text("Import")
+                        .font(.title)
+                        .padding()
+                        .frame(width: 200.0)
+                        .background(.orange)
+                        .foregroundStyle(.white)
+                        .cornerRadius(30)
+                }
             }
             .padding()
             .navigationTitle("New Receipt")
@@ -52,6 +61,10 @@ struct NewReceiptView: View {
                 }
                 else if value == "receipt_scan" {
                     ScanDocumentView(recognizedText: $recognizedText, returnedNewReceiptInfo: $newReceiptInfo, parentPath: $path, isLoading: $isLoading)
+                }
+                else if value == "receipt_import" {
+                    VStack {}
+//                    ReceiptImportView()
                 }
             }
             .onChange(of: path) { newPath in
