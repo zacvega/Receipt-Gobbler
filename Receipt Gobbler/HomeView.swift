@@ -25,7 +25,7 @@ struct HomeView: View {
                     .padding()
                 Spacer()
                 // GeometryReader to get the available width for buttons
-//                GeometryReader { geometry in
+                GeometryReader { geometry in
                     VStack {
                         Chart(dataModel.storesVisited){ visit in
                             BarMark(
@@ -34,12 +34,13 @@ struct HomeView: View {
                             )
                         }
                         .padding(.top, 20)
-                        .padding(.bottom, 50)
-                        .frame(height: 500)
+                        .padding(.bottom, 20)
+//                        .frame(height: 500)
                     }
-//                    .frame(width: geometry.size.width, height: geometry.size.height) // Ensuring buttons align properly
+                    // add the following line back in if you think the chart is too large
+//                    .frame(width: geometry.size.width, height: geometry.size.height * 0.80)
                     
-//                }
+                }
 //                .padding(.top, 20)
 
 //                Spacer()
