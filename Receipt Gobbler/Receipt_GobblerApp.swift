@@ -54,19 +54,24 @@ enum FatalError: Error {
     case unexpected
 }
 
+func loadFakeReceiptStore() -> ReceiptStore {
+    DLOG("using fake data")
+    let rs = ReceiptStore()
+    rs.receiptsDict = Dictionary(uniqueKeysWithValues: syntheticData.fullInfo.map{($0.id, $0)})
+    rs.onModelUpdated()
+    return rs
+}
+
 func loadReceiptStore() throws -> ReceiptStore {
     if CLEAR_APP_DATA {
         clearAppData()
     }
+
+    if USE_FAKE_RECEIPT_DATA {
+        return loadFakeReceiptStore()
+    }
     
     let rs = ReceiptStore()
-    
-    if USE_FAKE_RECEIPT_DATA {
-        DLOG("using fake data")
-        rs.receiptsDict = Dictionary(uniqueKeysWithValues: syntheticData.fullInfo.map{($0.id, $0)})
-        rs.onModelUpdated()
-        return rs
-    }
     
     let receiptInfoList = try? loadJsonToMemory()
     if receiptInfoList == nil {

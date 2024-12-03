@@ -23,49 +23,26 @@ struct HomeView: View {
                 // Search Bar
                 SearchBar(text: $searchText)
                     .padding()
-                
+                Spacer()
                 // GeometryReader to get the available width for buttons
-                GeometryReader { geometry in
+//                GeometryReader { geometry in
                     VStack {
-                        // New Receipt Button
-                        Button(action: {
-                            selectedTab = "new_receipt"
-                        }) {
-                            Text("New Receipt")
-                                .font(.title)
-                                .frame(width: geometry.size.width * 0.8) // Fixed width based on available space
-                                .padding()
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                        }
-                        
-                        // Previous Receipt Button
-                        Button(action: {
-                            selectedTab = "past_receipts"
-                        }) {
-                            Text("Past Receipts")
-                                .font(.title)
-                                .frame(width: geometry.size.width * 0.8) // Fixed width based on available space
-                                .padding()
-                                .background(Color.green)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                        }.padding(.top, 20)
-                        
                         Chart(dataModel.storesVisited){ visit in
                             BarMark(
                                 x: .value("Store", visit.StoreName),  // X-axis: Store name
                                 y: .value("Visit Count", visit.visitCount)  // Y-axis: Number of visits
                             )
-                        }.padding(.top, 20)
+                        }
+                        .padding(.top, 20)
+                        .padding(.bottom, 50)
+                        .frame(height: 500)
                     }
-                    .frame(width: geometry.size.width, height: geometry.size.height) // Ensuring buttons align properly
+//                    .frame(width: geometry.size.width, height: geometry.size.height) // Ensuring buttons align properly
                     
-                }
-                .padding(.top, 20)
+//                }
+//                .padding(.top, 20)
 
-                Spacer()
+//                Spacer()
             }
             .padding()
             .navigationTitle("Home")
@@ -77,7 +54,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     @State static var _selectedTab: String = "home"
-    @StateObject static var dataModel: ReceiptStore = ReceiptStore()
+    @StateObject static var dataModel: ReceiptStore = loadFakeReceiptStore()
     
     static var previews: some View {
         
