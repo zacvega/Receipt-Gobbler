@@ -10,7 +10,9 @@ import SwiftUI
 struct LoadingView: View {
     var body: some View {
         VStack {
-            ProgressView().progressViewStyle(CircularProgressViewStyle())
+            ProgressView("Extracting...").progressViewStyle(CircularProgressViewStyle())
+                .scaleEffect(2)
+                .font(.system(size:12))
         }
     }
 }
